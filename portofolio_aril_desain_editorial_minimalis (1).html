@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aril — Portofolio RPL</title>
+  <meta name="description" content="Portofolio pribadi Aril, pelajar jurusan Rekayasa Perangkat Lunak (RPL)." />
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            canvas: '#FAFAFA',
+            surface: '#FFFFFF',
+            ink: '#111111',
+            muted: '#52525B',
+            line: '#E4E4E7',
+            accent: '#14532D',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Pengaturan dasar tipografi dan permukaan editorial */
+    body {
+      background-color: #FAFAFA;
+      color: #111111;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Pengaturan dasar tipografi dan permukaan editorial */
+    body {
+      background-color: #FAFAFA;
+      color: #111111;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Transisi halus dan terukur tanpa animasi berlebihan */
+    .editorial-card {
+      background-color: #FFFFFF;
+      border: 1px solid #E4E4E7;
+      border-radius: 8px;
+      transition: border-color 0.15s ease;
+    }
+
+    .editorial-card:hover {
+      border-color: #14532D;
+    }
+
+    /* Indikator tab filter aktif */
+    .filter-tab {
+      border-bottom: 2px solid transparent;
+      color: #52525B;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .filter-tab:hover {
+      color: #111111;
+    }
+
+    .filter-tab.active {
+      color: #14532D;
+      border-bottom-color: #14532D;
+      font-weight: 600;
+    }
+
+    /* Gaya kotak fallback jika berkas gambar lokal belum tersedia */
+    .asset-fallback {
+      background-color: #F4F4F5;
+      border-bottom: 1px solid #E4E4E7;
+      color: #52525B;
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="bg-canvas text-ink selection:bg-[#14532D] selection:text-white">
+
+  <!-- ===================================================================== -->
+  <!-- NAVIGASI ATAS MINIMALIS                                               -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-canvas border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 sm:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Identitas Kiri -->
+        <a href="#beranda" class="font-heading text-lg font-bold tracking-tight text-ink hover:text-accent transition-colors">
+          Aril.
+        </a>
+
+        <!-- Menu Desktop Kanan -->
+        <nav aria-label="Navigasi Utama" class="hidden md:flex items-center gap-8">
+          <a href="#tentang" class="text-sm font-medium text-muted hover:text-accent transition-colors">Tentang</a>
+          <a href="#proyek" class="text-sm font-medium text-muted hover:text-accent transition-colors">Proyek</a>
+          <a href="#keahlian" class="text-sm font-medium text-muted hover:text-accent transition-colors">Keahlian</a>
+          <a href="#kontak" class="text-sm font-medium text-muted hover:text-accent transition-colors">Kontak</a>
+        </nav>
+
+        <!-- Tombol Menu Mobile -->
+        <button
+          id="mobile-menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Buka menu navigasi"
+          class="md:hidden inline-flex items-center justify-center p-3 -mr-3 text-ink hover:text-accent focus:outline-none"
+        >
+          <svg id="icon-open" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+          <svg id="icon-close" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dropdown Menu Mobile -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface border-t border-line">
+      <nav aria-label="Navigasi Mobile" class="mx-auto max-w-5xl px-5 py-3 flex flex-col divide-y divide-line">
+        <a href="#tentang" class="mobile-link py-3 text-sm font-medium text-ink hover:text-accent">Tentang</a>
+        <a href="#proyek" class="mobile-link py-3 text-sm font-medium text-ink hover:text-accent">Proyek</a>
+        <a href="#keahlian" class="mobile-link py-3 text-sm font-medium text-ink hover:text-accent">Keahlian</a>
+        <a href="#kontak" class="mobile-link py-3 text-sm font-medium text-ink hover:text-accent">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- =================================================================== -->
+    <!-- BAGIAN HERO / PENGANTAR                                             -->
+    <!-- =================================================================== -->
+    <section id="beranda" class="border-b border-line">
+      <div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 sm:py-24">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-start">
+          
+          <!-- Kolom Teks Pengantar -->
+          <div class="md:col-span-8 space-y-6">
+            <p class="font-mono text-xs uppercase tracking-wider text-accent font-medium">
+              REKAYASA PERANGKAT LUNAK (RPL)
+            </p>
+
+            <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-ink leading-[1.1]">
+              Aril
+            </h1>
+
+            <p class="max-w-2xl text-base sm:text-lg leading-relaxed text-muted">
+              Siswa jurusan Rekayasa Perangkat Lunak yang berfokus pada pengembangan aplikasi web, sistem pengelolaan data, serta antarmuka perangkat lunak yang terstruktur dan mudah digunakan.
+            </p>
+
+            <div class="pt-2 flex flex-wrap items-center gap-3">
+              <a
+                href="#proyek"
+                class="inline-flex items-center justify-center rounded-[6px] bg-accent px-5 py-3 text-sm font-medium text-white hover:bg-[#0f3f22] transition-colors"
+              >
+                Lihat Proyek
+              </a>
+              <a
+                href="#kontak"
+                class="inline-flex items-center justify-center rounded-[6px] border border-line bg-surface px-5 py-3 text-sm font-medium text-ink hover:border-ink transition-colors"
+              >
+                Kontak
+              </a>
+            </div>
+          </div>
+
+          <!-- Kolom Foto Profil (home.png.png dengan fallback rapi) -->
+          <div class="md:col-span-4">
+            <figure class="rounded-[8px] border border-line bg-surface overflow-hidden">
+              <div class="aspect-square w-full bg-[#F4F4F5] relative">
+                <img
+                  src="home.png.png"
+                  alt="Foto profil Aril"
+                  class="h-full w-full object-cover"
+                  onerror="handleImageError(this, 'home.png.png')"
+                />
+                <div class="hidden h-full w-full flex-col items-center justify-center p-6 text-center font-mono text-xs text-muted bg-[#F4F4F5]">
+                  <span class="border border-line bg-surface px-2.5 py-1 rounded-[6px] text-ink">home.png.png</span>
+                </div>
+              </div>
+              <figcaption class="border-t border-line px-4 py-3 flex items-center justify-between font-mono text-xs text-muted">
+                <span>Aril</span>
+                <span>Jurusan RPL</span>
+              </figcaption>
+            </figure>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- BAGIAN PROYEK PILIHAN                                               -->
+    <!-- =================================================================== -->
+    <section id="proyek" class="border-b border-line">
+      <div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 sm:py-24 space-y-10">
+        
+        <!-- Tajuk & Filter Kategori -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-line pb-6">
+          <div class="space-y-2">
+            <p class="font-mono text-xs uppercase tracking-wider text-accent">01 / Arsip Karya</p>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-ink">Proyek Terpilih</h2>
+          </div>
+
+          <!-- Kontrol Filter Monokrom -->
+          <div role="tablist" aria-label="Filter kategori proyek" class="flex flex-wrap items-center gap-6">
+            <button type="button" data-filter="Semua" class="filter-tab active py-2 text-sm">Semua</button>
+            <button type="button" data-filter="Web" class="filter-tab py-2 text-sm">Web</button>
+            <button type="button" data-filter="Pertanian" class="filter-tab py-2 text-sm">Pertanian</button>
+            <button type="button" data-filter="RPL" class="filter-tab py-2 text-sm">RPL</button>
+          </div>
+        </div>
+
+        <!-- Grid Kartu Proyek -->
+        <div id="project-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- KARTU PROYEK 1: Sistem Informasi Tanaman Obat -->
+          <article
+            tabindex="0"
+            role="button"
+            aria-label="Buka detail Sistem Informasi Tanaman Obat"
+            data-categories="Web,Pertanian"
+            data-project-id="tanaman-obat"
+            class="project-item editorial-card overflow-hidden flex flex-col justify-between cursor-pointer focus:outline-none focus:border-accent"
+          >
+            <div>
+              <div class="aspect-[16/10] w-full bg-[#F4F4F5] border-b border-line overflow-hidden">
+                <img
+                  src="tanaman obat.jpeg"
+                  alt="Tampilan Sistem Informasi Tanaman Obat"
+                  class="h-full w-full object-cover"
+                  onerror="handleImageError(this, 'tanaman obat.jpeg')"
+                />
+                <div class="hidden h-full w-full flex-col items-center justify-center p-4 text-center font-mono text-xs text-muted bg-[#F4F4F5]">
+                  <span class="border border-line bg-surface px-2.5 py-1 rounded-[6px] text-ink">tanaman obat.jpeg</span>
+                </div>
+              </div>
+
+              <div class="p-5 space-y-3">
+                <div class="flex items-center gap-2 font-mono text-xs text-accent">
+                  <span>Web</span>
+                  <span class="text-muted">/</span>
+                  <span>Pertanian</span>
+                </div>
+                <h3 class="text-lg font-semibold text-ink leading-snug">
+                  Sistem Informasi Tanaman Obat
+                </h3>
+                <p class="text-sm leading-relaxed text-muted">
+                  Katalog dan sistem informasi tanaman obat berbasis web untuk mendokumentasikan jenis, bagian yang digunakan, dan khasiatnya.
+                </p>
+              </div>
+            </div>
+
+            <div class="px-5 pb-5 pt-3 flex items-center justify-between border-t border-line mt-2">
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-muted">
+                <span class="border border-line px-2 py-0.5 rounded-[6px]">HTML</span>
+                <span class="border border-line px-2 py-0.5 rounded-[6px]">CSS</span>
+                <span class="border border-line px-2 py-0.5 rounded-[6px]">JavaScript</span>
+              </div>
+              <span class="font-mono text-xs text-ink">Detail &rarr;</span>
+            </div>
+          </article>
+
+          <!-- KARTU PROYEK 2: Monitoring Tanaman Kangkung -->
+          <article
+            tabindex="0"
+            role="button"
+            aria-label="Buka detail Monitoring Tanaman Kangkung"
+            data-categories="Web,Pertanian"
+            data-project-id="monitoring-kangkung"
+            class="project-item editorial-card overflow-hidden flex flex-col justify-between cursor-pointer focus:outline-none focus:border-accent"
+          >
+            <div>
+              <div class="aspect-[16/10] w-full bg-[#F4F4F5] border-b border-line overflow-hidden">
+                <img
+                  src="kangkung.jpg"
+                  alt="Tampilan Monitoring Tanaman Kangkung"
+                  class="h-full w-full object-cover"
+                  onerror="handleImageError(this, 'kangkung.jpg')"
+                />
+                <div class="hidden h-full w-full flex-col items-center justify-center p-4 text-center font-mono text-xs text-muted bg-[#F4F4F5]">
+                  <span class="border border-line bg-surface px-2.5 py-1 rounded-[6px] text-ink">kangkung.jpg</span>
+                </div>
+              </div>
+
+              <div class="p-5 space-y-3">
+                <div class="flex items-center gap-2 font-mono text-xs text-accent">
+                  <span>Web</span>
+                  <span class="text-muted">/</span>
+                  <span>Pertanian</span>
+                </div>
+                <h3 class="text-lg font-semibold text-ink leading-snug">
+                  Monitoring Tanaman Kangkung
+                </h3>
+                <p class="text-sm leading-relaxed text-muted">
+                  Aplikasi pencatatan dan pemantauan pertumbuhan tanaman kangkung untuk mendata perkembangan harian hingga masa panen.
+                </p>
+              </div>
+            </div>
+
+            <div class="px-5 pb-5 pt-3 flex items-center justify-between border-t border-line mt-2">
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-muted">
+                <span class="border border-line px-2 py-0.5 rounded-[6px]">HTML</span>
+                <span class="border border-line px-2 py-0.5 rounded-[6px]">JavaScript</span>
+                <span class="border border-line px-2 py-0.5 rounded-[6px]">MySQL</span>
+              </div>
+              <span class="font-mono text-xs text-ink">Detail &rarr;</span>
+            </div>
+          </article>
+
+          <!-- KARTU PROYEK 3: Portofolio Proyek RPL -->
+          <article
+            tabindex="0"
+            role="button"
+            aria-label="Buka detail Portofolio Proyek RPL"
+            data-categories="RPL,Web"
+            data-project-id="portofolio-rpl"
+            class="project-item editorial-card overflow-hidden flex flex-col justify-between cursor-pointer focus:outline-none focus:border-accent"
+          >
+            <div>
+              <div class="aspect-[16/10] w-full bg-[#F4F4F5] border-b border-line overflow-hidden">
+                <img
+                  src="portofolio pplg.jpeg"
+                  alt="Tampilan Portofolio Proyek RPL"
+                  class="h-full w-full object-cover"
+                  onerror="handleImageError(this, 'portofolio pplg.jpeg')"
+                />
+                <div class="hidden h-full w-full flex-col items-center justify-center p-4 text-center font-mono text-xs text-muted bg-[#F4F4F5]">
+                  <span class="border border-line bg-surface px-2.5 py-1 rounded-[6px] text-ink">portofolio pplg.jpeg</span>
+                </div>
+              </div>
+
+              <div class="p-5 space-y-3">
+                <div class="flex items-center gap-2 font-mono text-xs text-accent">
+                  <span>RPL</span>
+                  <span class="text-muted">/</span>
+                  <span>Web</span>
+                </div>
+                <h3 class="text-lg font-semibold text-ink leading-snug">
+                  Portofolio Proyek RPL
+                </h3>
+                <p class="text-sm leading-relaxed text-muted">
+                  Kumpulan tugas dan pengembangan antarmuka web jurusan Rekayasa Perangkat Lunak sebagai arsip praktik pemrograman.
+                </p>
+              </div>
+            </div>
+
+            <div class="px-5 pb-5 pt-3 flex items-center justify-between border-t border-line mt-2">
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-muted">
+                <span class="border border-line px-2 py-0.5 rounded-[6px]">HTML5</span>
+                <span class="border border-line px-2 py-0.5 rounded-[6px]">CSS3</span>
+                <span class="border border-line px-2 py-0.5 rounded-[6px]">JavaScript</span>
+              </div>
+              <span class="font-mono text-xs text-ink">Detail &rarr;</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- BAGIAN TENTANG & KEAHLIAN (GRID 2 KOLOM BERBATAS GARIS TIPIS)        -->
+    <!-- =================================================================== -->
+    <section id="tentang" class="border-b border-line">
+      <div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 sm:py-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 border border-line rounded-[8px] bg-surface divide-y md:divide-y-0 md:divide-x divide-line">
+          
+          <!-- Kolom Kiri: Tentang -->
+          <div class="p-6 sm:p-10 space-y-5">
+            <p class="font-mono text-xs uppercase tracking-wider text-accent">02 / Tentang</p>
+            <h2 class="text-2xl font-bold tracking-tight text-ink">Profil Singkat</h2>
+            <div class="space-y-4 text-sm sm:text-base leading-relaxed text-muted">
+              <p>
+                Saya Aril, pelajar jurusan <strong class="font-semibold text-ink">Rekayasa Perangkat Lunak (RPL)</strong> yang berfokus pada pengembangan web terstruktur dan pembuatan antarmuka yang fungsional.
+              </p>
+              <p>
+                Dalam setiap proyek, saya mengutamakan kode yang rapi, alur navigasi yang jelas, serta pengolahan data yang mudah dipahami oleh pengguna maupun pengembang berikutnya.
+              </p>
+            </div>
+            <dl class="pt-4 border-t border-line grid grid-cols-2 gap-4 font-mono text-xs">
+              <div>
+                <dt class="text-muted">Jurusan</dt>
+                <dd class="mt-1 font-medium text-ink">Rekayasa Perangkat Lunak</dd>
+              </div>
+              <div>
+                <dt class="text-muted">Fokus Utama</dt>
+                <dd class="mt-1 font-medium text-ink">Pengembangan Web</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Kolom Kanan: Keahlian -->
+          <div id="keahlian" class="p-6 sm:p-10 space-y-6">
+            <p class="font-mono text-xs uppercase tracking-wider text-accent">03 / Keahlian</p>
+            <h2 class="text-2xl font-bold tracking-tight text-ink">Kompetensi Teknis</h2>
+
+            <div class="divide-y divide-line border-t border-b border-line">
+              <!-- Kelompok 1 -->
+              <div class="py-4 space-y-2.5">
+                <h3 class="text-sm font-semibold text-ink">Antarmuka Web</h3>
+                <div class="flex flex-wrap gap-2 font-mono text-xs text-ink">
+                  <span class="border border-line bg-canvas px-2.5 py-1 rounded-[6px]">HTML5</span>
+                  <span class="border border-line bg-canvas px-2.5 py-1 rounded-[6px]">CSS3</span>
+                  <span class="border border-line bg-canvas px-2.5 py-1 rounded-[6px]">JavaScript</span>
+                </div>
+              </div>
+
+              <!-- Kelompok 2 -->
+              <div class="py-4 space-y-2.5">
+                <h3 class="text-sm font-semibold text-ink">Pemrograman &amp; Basis Data</h3>
+                <div class="flex flex-wrap gap-2 font-mono text-xs text-ink">
+                  <span class="border border-line bg-canvas px-2.5 py-1 rounded-[6px]">PHP</span>
+                  <span class="border border-line bg-canvas px-2.5 py-1 rounded-[6px]">MySQL</span>
+                  <span class="border border-line bg-canvas px-2.5 py-1 rounded-[6px]">Dasar Python</span>
+                </div>
+              </div>
+
+              <!-- Kelompok 3 -->
+              <div class="py-4 space-y-2.5">
+                <h3 class="text-sm font-semibold text-ink">Perangkat Kerja</h3>
+                <div class="flex flex-wrap gap-2 font-mono text-xs text-ink">
+                  <span class="border border-line bg-canvas px-2.5 py-1 rounded-[6px]">Git</span>
+                  <span class="border border-line bg-canvas px-2.5 py-1 rounded-[6px]">GitHub</span>
+                  <span class="border border-line bg-canvas px-2.5 py-1 rounded-[6px]">VS Code</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- BAGIAN KONTAK                                                       -->
+    <!-- =================================================================== -->
+    <section id="kontak">
+      <div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 sm:py-24">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-start">
+          
+          <!-- Kolom Informasi Kontak -->
+          <div class="md:col-span-5 space-y-6">
+            <div class="space-y-2">
+              <p class="font-mono text-xs uppercase tracking-wider text-accent">04 / Kontak</p>
+              <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-ink">Hubungi Saya</h2>
+              <p class="text-sm sm:text-base leading-relaxed text-muted">
+                Silakan kirim pesan untuk diskusi proyek, kolaborasi tugas Rekayasa Perangkat Lunak, atau pertanyaan seputar karya yang ditampilkan.
+              </p>
+            </div>
+
+            <!-- Kartu Email + Tombol Salin -->
+            <div class="rounded-[8px] border border-line bg-surface p-5 space-y-3">
+              <p class="font-mono text-xs text-muted">Alamat Email Langsung</p>
+              <p id="email-address" class="font-mono text-sm font-medium text-ink select-all">
+                aril.rpl@gmail.com
+              </p>
+              <button
+                id="copy-email-btn"
+                type="button"
+                class="inline-flex items-center justify-center rounded-[6px] border border-line bg-canvas px-4 py-2.5 text-xs font-medium text-ink hover:border-accent hover:text-accent transition-colors"
+              >
+                Salin Alamat Email
+              </button>
+            </div>
+
+            <!-- Tautan Repositori -->
+            <div class="border-t border-line pt-4 flex items-center justify-between text-sm">
+              <span class="text-muted">GitHub</span>
+              <a
+                href="https://github.com/sonsaya47-aril"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-mono text-xs font-medium text-ink underline underline-offset-4 hover:text-accent"
+              >
+                github.com/sonsaya47-aril
+              </a>
+            </div>
+          </div>
+
+          <!-- Kolom Formulir Pesan Sederhana -->
+          <div class="md:col-span-7">
+            <form id="contact-form" class="rounded-[8px] border border-line bg-surface p-6 sm:p-8 space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="input-nama" class="block text-xs font-medium text-ink mb-1.5">Nama</label>
+                  <input
+                    id="input-nama"
+                    name="nama"
+                    type="text"
+                    required
+                    placeholder="Nama Anda"
+                    class="w-full rounded-[6px] border border-line bg-canvas px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/60 focus:border-accent focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label for="input-email" class="block text-xs font-medium text-ink mb-1.5">Email</label>
+                  <input
+                    id="input-email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="nama@domain.com"
+                    class="w-full rounded-[6px] border border-line bg-canvas px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/60 focus:border-accent focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="input-pesan" class="block text-xs font-medium text-ink mb-1.5">Pesan</label>
+                <textarea
+                  id="input-pesan"
+                  name="pesan"
+                  rows="4"
+                  required
+                  placeholder="Tuliskan pesan atau detail kebutuhan Anda..."
+                  class="w-full rounded-[6px] border border-line bg-canvas px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/60 focus:border-accent focus:outline-none"
+                ></textarea>
+              </div>
+
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
+                <button
+                  type="submit"
+                  class="inline-flex items-center justify-center rounded-[6px] bg-accent px-6 py-3 text-sm font-medium text-white hover:bg-[#0f3f22] transition-colors"
+                >
+                  Kirim Pesan
+                </button>
+                <p id="form-status" role="status" aria-live="polite" class="hidden font-mono text-xs text-accent">
+                  Pesan terkirim. Terima kasih telah menghubungi.
+                </p>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- FOOTER                                                                -->
+  <!-- ===================================================================== -->
+  <footer class="border-t border-line bg-surface">
+    <div class="mx-auto max-w-5xl px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
+      <p class="font-mono">&copy; 2026 Aril — Rekayasa Perangkat Lunak</p>
+      <a href="#beranda" class="font-mono text-ink hover:text-accent transition-colors">
+        Kembali ke atas &uarr;
+      </a>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL DETAIL PROYEK                                                   -->
+  <!-- ===================================================================== -->
+  <div
+    id="project-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-[#111111]/60 p-4 sm:p-6"
+  >
+    <div class="w-full max-w-2xl rounded-[8px] border border-line bg-surface max-h-[90vh] overflow-y-auto">
+      <!-- Header Modal -->
+      <div class="sticky top-0 z-10 flex items-center justify-between border-b border-line bg-surface px-6 py-4">
+        <span class="font-mono text-xs uppercase tracking-wider text-accent">Detail Proyek</span>
+        <button
+          id="close-modal-btn"
+          type="button"
+          class="rounded-[6px] border border-line px-3 py-1.5 font-mono text-xs text-ink hover:border-ink transition-colors"
+        >
+          Tutup [Esc]
+        </button>
+      </div>
+
+      <!-- Konten Modal -->
+      <div id="modal-content" class="p-6 sm:p-8 space-y-6"></div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT INTERNAL                                                   -->
+  <!-- ===================================================================== -->
+  <script>
+    // Data lengkap untuk setiap proyek
+    const projectsData = {
+      'tanaman-obat': {
+        category: 'Web / Pertanian',
+        title: 'Sistem Informasi Tanaman Obat',
+        image: 'tanaman obat.jpeg',
+        summary:
+          'Aplikasi web katalog yang menyajikan informasi terstruktur mengenai berbagai jenis tanaman obat, nama ilmiah, bagian tanaman yang dimanfaatkan, serta cara pengolahan dan khasiatnya.',
+        features: [
+          'Katalog tanaman herbal berbasis web dengan pengelompokan kategori khasiat.',
+          'Fitur pencarian nama tanaman untuk memudahkan penelusuran informasi.',
+          'Tampilan baca yang bersih dan responsif pada perangkat komputer maupun seluler.'
+        ],
+        technologies: ['HTML', 'CSS', 'JavaScript'],
+        repo: 'https://github.com/sonsaya47-aril'
+      },
+      'monitoring-kangkung': {
+        category: 'Web / Pertanian',
+        title: 'Monitoring Tanaman Kangkung',
+        image: 'kangkung.jpg',
+        summary:
+          'Sistem pencatatan dan pemantauan pertumbuhan tanaman kangkung yang dirancang untuk mendokumentasikan perkembangan harian, kondisi media tanam, serta jadwal perawatan hingga siap panen.',
+        features: [
+          'Pencatatan berkala tinggi tanaman, jumlah daun, dan kondisi pertumbuhan.',
+          'Jadwal penyiraman dan pemupukan yang tercatat secara kronologis.',
+          'Ringkasan data panen sebagai bahan evaluasi hasil budidaya.'
+        ],
+        technologies: ['HTML', 'JavaScript', 'MySQL'],
+        repo: 'https://github.com/sonsaya47-aril'
+      },
+      'portofolio-rpl': {
+        category: 'RPL / Web',
+        title: 'Portofolio Proyek RPL',
+        image: 'portofolio pplg.jpeg',
+        summary:
+          'Kumpulan tugas dan pengembangan antarmuka web jurusan Rekayasa Perangkat Lunak yang mendokumentasikan latihan struktur halaman, tata letak responsif, dan logika pemrograman sisi klien.',
+        features: [
+          'Pengarsipan proyek praktik pemrograman web selama masa studi RPL.',
+          'Penerapan struktur HTML semantik, CSS terorganisir, dan interaksi JavaScript.',
+          'Navigasi ringkas untuk meninjau ringkasan fungsi serta teknologi tiap karya.'
+        ],
+        technologies: ['HTML5', 'CSS3', 'JavaScript'],
+        repo: 'https://github.com/sonsaya47-aril'
+      }
+    };
+
+    // Handler fallback gambar lokal yang bersih
+    function handleImageError(imgElement, fileName) {
+      imgElement.style.display = 'none';
+      const fallbackBox = imgElement.nextElementSibling;
+      if (fallbackBox) {
+        fallbackBox.classList.remove('hidden');
+        fallbackBox.classList.add('flex');
+      }
+    }
+
+    // 1. Navigasi Mobile Toggle
+    const mobileToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    mobileToggle.addEventListener('click', () => {
+      const isClosed = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      iconOpen.classList.toggle('hidden', isClosed);
+      iconClose.classList.toggle('hidden', !isClosed);
+      mobileToggle.setAttribute('aria-expanded', String(isClosed));
+    });
+
+    document.querySelectorAll('.mobile-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // 2. Filter Kategori Proyek
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const projectItems = document.querySelectorAll('.project-item');
+
+    filterTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const selectedCategory = tab.getAttribute('data-filter');
+
+        filterTabs.forEach((item) => item.classList.remove('active'));
+        tab.classList.add('active');
+
+        projectItems.forEach((card) => {
+          const cardCategories = (card.getAttribute('data-categories') || '').split(',');
+          if (selectedCategory === 'Semua' || cardCategories.includes(selectedCategory)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // 3. Modal Detail Proyek
+    const modal = document.getElementById('project-modal');
+    const modalContent = document.getElementById('modal-content');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+
+    function openModal(projectId) {
+      const project = projectsData[projectId];
+      if (!project) return;
+
+      modalContent.innerHTML = `
+        <div class="aspect-[16/9] w-full rounded-[6px] border border-line bg-[#F4F4F5] overflow-hidden">
+          <img
+            src="${project.image}"
+            alt="${project.title}"
+            class="h-full w-full object-cover"
+            onerror="handleImageError(this, '${project.image}')"
+          />
+          <div class="hidden h-full w-full flex-col items-center justify-center p-4 text-center font-mono text-xs text-muted bg-[#F4F4F5]">
+            <span class="border border-line bg-surface px-2.5 py-1 rounded-[6px] text-ink">${project.image}</span>
+          </div>
+        </div>
+
+        <div class="space-y-2.5">
+          <p class="font-mono text-xs text-accent">${project.category}</p>
+          <h3 id="modal-title" class="text-2xl font-bold tracking-tight text-ink">${project.title}</h3>
+          <p class="text-sm sm:text-base leading-relaxed text-muted">${project.summary}</p>
+        </div>
+
+        <div class="border-t border-line pt-5 space-y-3">
+          <h4 class="font-mono text-xs uppercase tracking-wider text-ink">Ringkasan Fungsional</h4>
+          <ul class="space-y-2 text-sm text-muted list-disc pl-5">
+            ${project.features.map((feat) => `<li>${feat}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="border-t border-line pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1.5">
+            <p class="font-mono text-xs text-muted">Teknologi yang Digunakan</p>
+            <div class="flex flex-wrap gap-1.5 font-mono text-xs text-ink">
+              ${project.technologies
+                .map((tech) => `<span class="border border-line bg-canvas px-2.5 py-1 rounded-[6px]">${tech}</span>`)
+                .join('')}
+            </div>
+          </div>
+
+          <a
+            href="${project.repo}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-[6px] bg-accent px-4 py-2.5 text-xs font-medium text-white hover:bg-[#0f3f22] transition-colors"
+          >
+            Buka Repositori GitHub
+          </a>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      closeModalBtn.focus();
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    projectItems.forEach((card) => {
+      card.addEventListener('click', () => {
+        openModal(card.getAttribute('data-project-id'));
+      });
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openModal(card.getAttribute('data-project-id'));
+        }
+      });
+    });
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    // 4. Salin Alamat Email
+    const copyEmailBtn = document.getElementById('copy-email-btn');
+    const emailAddress = document.getElementById('email-address');
+    let resetCopyTimeout;
+
+    copyEmailBtn.addEventListener('click', () => {
+      const emailText = emailAddress.textContent.trim();
+      const tempInput = document.createElement('input');
+      tempInput.value = emailText;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        // Abaikan jika browser membatasi penyalinan otomatis
+      }
+      document.body.removeChild(tempInput);
+
+      copyEmailBtn.textContent = 'Email Tersalin';
+      copyEmailBtn.classList.add('border-accent', 'text-accent');
+
+      clearTimeout(resetCopyTimeout);
+      resetCopyTimeout = setTimeout(() => {
+        copyEmailBtn.textContent = 'Salin Alamat Email';
+        copyEmailBtn.classList.remove('border-accent', 'text-accent');
+      }, 3000);
+    });
+
+    // 5. Konfirmasi Formulir Kontak
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+
+    contactForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      formStatus.classList.remove('hidden');
+      contactForm.reset();
+
+      setTimeout(() => {
+        formStatus.classList.add('hidden');
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
