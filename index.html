@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Ach Syafa Ariyilhaq — Portofolio RPL</title>
-  <meta name="description" content="Portofolio pribadi Ach Syafa Ariyilhaq, pelajar jurusan RPL">
+  <meta name="description" content="Portofolio pribadi Ach Syafa Ariyilhaq, pelajar jurusan RPL.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -61,6 +63,7 @@
       border-bottom: 2px solid transparent;
       color: #52525B;
       transition: color 0.15s ease;
+      padding-bottom: 8px;
     }
 
     .filter-tab:hover {
@@ -71,6 +74,14 @@
       color: #14532D;
       border-bottom-color: #14532D;
       font-weight: 600;
+    }
+
+    .project-item {
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .project-item.hidden-project {
+      display: none;
     }
   </style>
 </head>
@@ -83,10 +94,10 @@
     <div class="flex h-16 items-center justify-between">
 
       <a href="#beranda" class="font-heading text-lg font-bold">
-        Aril.
+        Ach Syafa Ariyilhaq.
       </a>
 
-      <nav class="hidden md:flex items-center gap-8">
+      <nav class="hidden md:flex items-center gap-8 text-sm">
         <a href="#tentang">Tentang</a>
         <a href="#proyek">Proyek</a>
         <a href="#keahlian">Keahlian</a>
@@ -94,7 +105,8 @@
       </nav>
 
       <button id="mobile-menu-toggle"
-        class="md:hidden p-3">
+        class="md:hidden p-3"
+        aria-label="Buka menu">
         ☰
       </button>
 
@@ -126,7 +138,7 @@
         </p>
 
         <h1 class="text-4xl sm:text-6xl font-bold">
-          Aril
+          Ach Syafa Ariyilhaq
         </h1>
 
         <p class="text-base sm:text-lg leading-relaxed text-muted">
@@ -152,11 +164,11 @@
         <figure class="rounded-lg border bg-white overflow-hidden">
 
           <img src="home.png.png"
-            alt="Foto profil Aril"
+            alt="Foto profil Ach Syafa Ariyilhaq"
             class="w-full aspect-square object-cover">
 
-          <figcaption class="px-4 py-3 flex justify-between text-xs">
-            <span>Aril</span>
+          <figcaption class="px-4 py-3 flex justify-between text-xs gap-2">
+            <span>Ach Syafa Ariyilhaq</span>
             <span>Jurusan RPL</span>
           </figcaption>
 
@@ -184,10 +196,23 @@
       </div>
 
       <div class="flex flex-wrap gap-6">
-        <button data-filter="Semua" class="filter-tab active">Semua</button>
-        <button data-filter="Web" class="filter-tab">Web</button>
-        <button data-filter="Pertanian" class="filter-tab">Pertanian</button>
-        <button data-filter="RPL" class="filter-tab">RPL</button>
+
+        <button data-filter="Semua" class="filter-tab active">
+          Semua
+        </button>
+
+        <button data-filter="Web" class="filter-tab">
+          Web
+        </button>
+
+        <button data-filter="Pertanian" class="filter-tab">
+          Pertanian
+        </button>
+
+        <button data-filter="RPL" class="filter-tab">
+          RPL
+        </button>
+
       </div>
 
     </div>
@@ -199,7 +224,6 @@
       <article
         tabindex="0"
         data-categories="Web,Pertanian"
-        data-project-id="tanaman-obat"
         class="project-item editorial-card overflow-hidden cursor-pointer">
 
         <img src="tanaman obat.jpeg"
@@ -222,7 +246,7 @@
 
         </div>
 
-        <div class="px-5 pb-5 flex gap-2 text-xs">
+        <div class="px-5 pb-5 flex gap-2 text-xs flex-wrap">
           <span>HTML</span>
           <span>CSS</span>
           <span>JavaScript</span>
@@ -234,7 +258,6 @@
       <article
         tabindex="0"
         data-categories="Web,Pertanian"
-        data-project-id="monitoring-kangkung"
         class="project-item editorial-card overflow-hidden cursor-pointer">
 
         <img src="kangkung.jpg"
@@ -257,7 +280,7 @@
 
         </div>
 
-        <div class="px-5 pb-5 flex gap-2 text-xs">
+        <div class="px-5 pb-5 flex gap-2 text-xs flex-wrap">
           <span>HTML</span>
           <span>JavaScript</span>
           <span>CSS</span>
@@ -269,7 +292,6 @@
       <article
         tabindex="0"
         data-categories="RPL,Web"
-        data-project-id="portofolio-rpl"
         class="project-item editorial-card overflow-hidden cursor-pointer">
 
         <img src="portofolio pplg.jpeg"
@@ -292,7 +314,7 @@
 
         </div>
 
-        <div class="px-5 pb-5 flex gap-2 text-xs">
+        <div class="px-5 pb-5 flex gap-2 text-xs flex-wrap">
           <span>HTML5</span>
           <span>CSS3</span>
           <span>JavaScript</span>
@@ -324,7 +346,7 @@
         <div class="space-y-4 text-sm leading-relaxed text-muted">
 
           <p>
-            Saya Aril, pelajar jurusan
+            Saya <strong>Ach Syafa Ariyilhaq</strong>, pelajar jurusan
             <strong>Rekayasa Perangkat Lunak (RPL)</strong>
             yang berfokus pada pengembangan web terstruktur dan pembuatan antarmuka yang fungsional.
           </p>
@@ -369,6 +391,7 @@
         <div class="divide-y border-t border-b">
 
           <div class="py-4 space-y-3">
+
             <h3 class="font-semibold text-sm">
               Antarmuka Web
             </h3>
@@ -378,9 +401,11 @@
               <span class="border px-3 py-1 rounded">CSS3</span>
               <span class="border px-3 py-1 rounded">JavaScript</span>
             </div>
+
           </div>
 
           <div class="py-4 space-y-3">
+
             <h3 class="font-semibold text-sm">
               Pemrograman
             </h3>
@@ -388,9 +413,11 @@
             <div class="flex flex-wrap gap-2 text-xs">
               <span class="border px-3 py-1 rounded">Dasar Python</span>
             </div>
+
           </div>
 
           <div class="py-4 space-y-3">
+
             <h3 class="font-semibold text-sm">
               Perangkat Kerja
             </h3>
@@ -400,6 +427,7 @@
               <span class="border px-3 py-1 rounded">GitHub</span>
               <span class="border px-3 py-1 rounded">VS Code</span>
             </div>
+
           </div>
 
         </div>
@@ -444,9 +472,11 @@
           </p>
 
           <button id="copy-email-btn"
-            class="border px-4 py-2 rounded text-xs">
+            class="border px-4 py-2 rounded text-xs hover:bg-gray-100">
             Salin Alamat Email
           </button>
+
+          <p id="copy-status" class="text-xs text-accent"></p>
 
         </div>
 
@@ -456,6 +486,7 @@
 
           <a href="https://github.com/sonsaya47-aril"
             target="_blank"
+            rel="noopener noreferrer"
             class="underline text-xs">
             github.com/sonsaya47-aril
           </a>
@@ -473,4 +504,197 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
             <div>
-              <label class="block text-xs mb-
+              <label for="nama" class="block text-xs mb-2">
+                Nama Lengkap
+              </label>
+
+              <input
+                type="text"
+                id="nama"
+                name="nama"
+                required
+                placeholder="Masukkan nama"
+                class="w-full border rounded px-4 py-3 text-sm outline-none focus:border-green-800">
+            </div>
+
+            <div>
+              <label for="email" class="block text-xs mb-2">
+                Email
+              </label>
+
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="nama@email.com"
+                class="w-full border rounded px-4 py-3 text-sm outline-none focus:border-green-800">
+            </div>
+
+          </div>
+
+          <div>
+            <label for="subjek" class="block text-xs mb-2">
+              Subjek
+            </label>
+
+            <input
+              type="text"
+              id="subjek"
+              name="subjek"
+              required
+              placeholder="Subjek pesan"
+              class="w-full border rounded px-4 py-3 text-sm outline-none focus:border-green-800">
+          </div>
+
+          <div>
+            <label for="pesan" class="block text-xs mb-2">
+              Pesan
+            </label>
+
+            <textarea
+              id="pesan"
+              name="pesan"
+              rows="5"
+              required
+              placeholder="Tuliskan pesan Anda..."
+              class="w-full border rounded px-4 py-3 text-sm outline-none focus:border-green-800"></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="bg-accent text-white px-6 py-3 rounded text-sm hover:bg-green-900">
+            Kirim Pesan
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-line">
+  <div class="mx-auto max-w-5xl px-5 sm:px-8 py-8">
+
+    <div class="flex flex-col sm:flex-row justify-between gap-4 text-xs text-muted">
+
+      <p>
+        © 2026 Ach Syafa Ariyilhaq.
+      </p>
+
+      <p>
+        Dibuat dengan HTML, CSS, dan JavaScript.
+      </p>
+
+    </div>
+
+  </div>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+
+// MENU MOBILE
+const menuToggle = document.getElementById('mobile-menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+
+menuToggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
+});
+
+// TUTUP MENU SETELAH KLIK
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+  });
+});
+
+// FILTER PROYEK
+const filterButtons = document.querySelectorAll('[data-filter]');
+const projectItems = document.querySelectorAll('.project-item');
+
+filterButtons.forEach(button => {
+
+  button.addEventListener('click', () => {
+
+    const selectedFilter = button.dataset.filter;
+
+    filterButtons.forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    button.classList.add('active');
+
+    projectItems.forEach(project => {
+
+      const categories = project.dataset.categories.split(',');
+
+      if (
+        selectedFilter === 'Semua' ||
+        categories.includes(selectedFilter)
+      ) {
+        project.classList.remove('hidden-project');
+      } else {
+        project.classList.add('hidden-project');
+      }
+
+    });
+
+  });
+
+});
+
+// SALIN EMAIL
+const copyButton = document.getElementById('copy-email-btn');
+const emailAddress = document.getElementById('email-address');
+const copyStatus = document.getElementById('copy-status');
+
+copyButton.addEventListener('click', async () => {
+
+  try {
+    await navigator.clipboard.writeText(emailAddress.textContent.trim());
+
+    copyStatus.textContent = 'Alamat email berhasil disalin!';
+  } catch (error) {
+    copyStatus.textContent = 'Gagal menyalin. Silakan salin secara manual.';
+  }
+
+});
+
+// FORM KONTAK
+const contactForm = document.getElementById('contact-form');
+
+contactForm.addEventListener('submit', function(event) {
+
+  event.preventDefault();
+
+  const nama = document.getElementById('nama').value;
+  const email = document.getElementById('email').value;
+  const subjek = document.getElementById('subjek').value;
+  const pesan = document.getElementById('pesan').value;
+
+  const tujuanEmail = emailAddress.textContent.trim();
+
+  const isiPesan =
+    `Nama: ${nama}\n` +
+    `Email: ${email}\n\n` +
+    `Pesan:\n${pesan}`;
+
+  const mailtoLink =
+    `mailto:${tujuanEmail}` +
+    `?subject=${encodeURIComponent(subjek)}` +
+    `&body=${encodeURIComponent(isiPesan)}`;
+
+  window.location.href = mailtoLink;
+
+});
+
+</script>
+
+</body>
+</html>
