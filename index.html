@@ -58,7 +58,6 @@
 
       <nav class="main-nav" aria-label="Navigasi utama">
         <a href="#beranda" class="nav-link active" data-nav="beranda" data-i18n="navHome">Beranda</a>
-        <a href="#ringkasan" class="nav-link" data-nav="ringkasan" data-i18n="navWorkspace">Konsol</a>
         <a href="#proyek" class="nav-link" data-nav="proyek" data-i18n="navProjects">Proyek</a>
         <a href="#tentang" class="nav-link" data-nav="tentang" data-i18n="navAbout">Profil</a>
         <a href="#kontak" class="nav-link" data-nav="kontak" data-i18n="navContact">Kontak</a>
@@ -223,120 +222,6 @@
 
     <!-- ==================================================================
          INTERACTIVE BENTO CONSOLE & GITHUB TELEMETRY
-         ================================================================== -->
-    <section id="ringkasan" class="section section--compact">
-      <div class="container">
-        <div class="section-header reveal">
-          <div>
-            <p class="eyebrow"><span class="eyebrow__num">00</span> <span data-i18n="consoleEyebrow">/ Ruang Kerja Interaktif</span></p>
-            <h2 class="section-title">
-              <span data-i18n="consoleTitle">Konsol Profil</span> <span class="serif-italic">&amp; Telemetri</span>
-            </h2>
-          </div>
-          <p class="section-subtitle" data-i18n="consoleDesc">
-            Jelajahi ringkasan teknis dalam format kode interaktif atau pantau aktivitas repositori publik GitHub secara langsung.
-          </p>
-        </div>
-
-        <div class="bento-grid">
-          <!-- Interactive Code Console -->
-          <div class="glass-card code-window reveal">
-            <div class="code-window__bar">
-              <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-                <div class="window-dots" aria-hidden="true">
-                  <span></span><span></span><span></span>
-                </div>
-                <div class="code-tabs" role="tablist" aria-label="Berkas profil kode">
-                  <button type="button" class="code-tab active" data-code-tab="profil" role="tab" aria-selected="true">profil.json</button>
-                  <button type="button" class="code-tab" data-code-tab="stack" role="tab" aria-selected="false">stack.js</button>
-                  <button type="button" class="code-tab" data-code-tab="visi" role="tab" aria-selected="false">visi.py</button>
-                </div>
-              </div>
-              <div class="code-actions">
-                <button type="button" class="code-mini-btn" id="copy-code-btn">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                  <span data-i18n="copyCode">Salin</span>
-                </button>
-                <button type="button" class="code-mini-btn" id="run-code-btn">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-                  <span data-i18n="runCode">Jalankan</span>
-                </button>
-              </div>
-            </div>
-
-            <div class="code-body">
-              <pre id="code-display"></pre>
-            </div>
-            <div class="code-output" id="code-output" aria-live="polite"></div>
-          </div>
-
-          <!-- Right Column: GitHub Telemetry & Principles -->
-          <div class="bento-stack">
-            <div class="glass-card reveal">
-              <div class="github-card-head">
-                <div class="github-identity">
-                  <div class="github-icon-wrap">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.11.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.69-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.95.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18a10.9 10.9 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-                  </div>
-                  <div>
-                    <h3 style="font-size:1rem;font-weight:700;">GitHub Live</h3>
-                    <p style="font-family:var(--font-mono);font-size:0.74rem;color:var(--text-muted);" id="gh-status-text">@sonsaya47-aril</p>
-                  </div>
-                </div>
-                <a href="https://github.com/sonsaya47-aril" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--sm" data-i18n="openGithub">
-                  Buka GitHub ↗
-                </a>
-              </div>
-
-              <div class="github-metrics">
-                <div class="gh-metric">
-                  <div class="gh-metric__val" id="gh-repos-count">—</div>
-                  <div class="gh-metric__lbl" data-i18n="ghRepos">Repositori</div>
-                </div>
-                <div class="gh-metric">
-                  <div class="gh-metric__val" id="gh-followers-count">—</div>
-                  <div class="gh-metric__lbl" data-i18n="ghFollowers">Pengikut</div>
-                </div>
-                <div class="gh-metric">
-                  <div class="gh-metric__val">RPL</div>
-                  <div class="gh-metric__lbl" data-i18n="ghTrack">Jalur</div>
-                </div>
-              </div>
-
-              <div class="gh-repos-list" id="gh-repos-list">
-                <div class="gh-repo-item">
-                  <span>Memuat repositori terbaru...</span>
-                  <span class="gh-repo-item__lang">GitHub API</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="glass-card reveal">
-              <h3 style="font-size:1rem;font-weight:700;margin-bottom:14px;" data-i18n="principlesTitle">Prinsip Pengerjaan Kode</h3>
-              <div class="principles-list">
-                <div class="principle-row">
-                  <span class="principle-num">01</span>
-                  <div>
-                    <h4 data-i18n="p1Title">Struktur Semantik &amp; Rapi</h4>
-                    <p data-i18n="p1Desc">Memisahkan tanggung jawab HTML, CSS, dan JavaScript agar mudah dipelihara.</p>
-                  </div>
-                </div>
-                <div class="principle-row">
-                  <span class="principle-num">02</span>
-                  <div>
-                    <h4 data-i18n="p2Title">Antarmuka Intuitif</h4>
-                    <p data-i18n="p2Desc">Navigasi jelas dan nyaman diakses di layar desktop maupun perangkat seluler.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================================================================
-         PROJECTS SECTION
          ================================================================== -->
     <section id="proyek" class="section">
       <div class="container">
