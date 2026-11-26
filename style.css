@@ -2645,3 +2645,17 @@ html.js-reveal .reveal.in-view {
     color: #111111 !important;
   }
 }
+
+
+/* Simplified portfolio overrides */
+.ambient-canvas, .cursor-glow, .scroll-progress { display:none !important; }
+body { background-image:none !important; }
+.site-header { backdrop-filter:blur(12px); box-shadow:0 1px 0 var(--line); }
+.section { padding-top:clamp(3.5rem,7vw,6rem); padding-bottom:clamp(3.5rem,7vw,6rem); }
+.hero { min-height:auto; }
+.hero-grid { gap:clamp(2rem,5vw,4rem); }
+.glass-card, .project-card, .portrait-card, .contact-card, .workspace-card, .btn { box-shadow:none !important; backdrop-filter:none !important; }
+.glass-card, .project-card { border-radius:14px; }
+.project-card:hover, .glass-card:hover { transform:translateY(-3px); }
+.ambient-orb, .ambient-grid { display:none !important; }
+@media (prefers-reduced-motion:reduce) { *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; transition-duration:.01ms !important; } }

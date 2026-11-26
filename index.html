@@ -61,7 +61,6 @@
         <a href="#ringkasan" class="nav-link" data-nav="ringkasan" data-i18n="navWorkspace">Konsol</a>
         <a href="#proyek" class="nav-link" data-nav="proyek" data-i18n="navProjects">Proyek</a>
         <a href="#tentang" class="nav-link" data-nav="tentang" data-i18n="navAbout">Profil</a>
-        <a href="#keahlian" class="nav-link" data-nav="keahlian" data-i18n="navSkills">Keahlian</a>
         <a href="#kontak" class="nav-link" data-nav="kontak" data-i18n="navContact">Kontak</a>
       </nav>
 
@@ -127,8 +126,6 @@
       <a href="#ringkasan" data-nav="ringkasan" data-i18n="navWorkspace">Konsol</a>
       <a href="#proyek" data-nav="proyek" data-i18n="navProjects">Proyek</a>
       <a href="#tentang" data-nav="tentang" data-i18n="navAbout">Profil</a>
-      <a href="#keahlian" data-nav="keahlian" data-i18n="navSkills">Keahlian</a>
-      <a href="#faq" data-nav="faq" data-i18n="navFaq">Tanya Jawab</a>
       <a href="#kontak" data-nav="kontak" data-i18n="navContact">Kontak</a>
     </nav>
     <button type="button" class="btn btn--secondary btn--sm" id="mobile-cmd-btn" style="width:100%;">
@@ -565,222 +562,6 @@
     </section>
 
     <!-- ==================================================================
-         SKILLS & CAPABILITIES
-         ================================================================== -->
-    <section id="keahlian" class="section">
-      <div class="container">
-        <div class="section-header reveal">
-          <div>
-            <p class="eyebrow"><span class="eyebrow__num">03</span> <span data-i18n="skillsEyebrow">/ Kompetensi Teknis</span></p>
-            <h2 class="section-title">
-              <span data-i18n="skillsTitle">Keahlian</span> <span class="serif-italic" data-i18n="skillsTitleSerif">&amp; Kemampuan</span>
-            </h2>
-          </div>
-
-          <div class="skills-tabs" role="group" aria-label="Filter keahlian">
-            <button type="button" class="filter-tab active" data-skill-filter="all" data-i18n="skillAll">Semua</button>
-            <button type="button" class="filter-tab" data-skill-filter="frontend" data-i18n="skillWeb">Antarmuka Web</button>
-            <button type="button" class="filter-tab" data-skill-filter="programming" data-i18n="skillProg">Pemrograman</button>
-            <button type="button" class="filter-tab" data-skill-filter="tools" data-i18n="skillTools">Perangkat Kerja</button>
-          </div>
-        </div>
-
-        <div class="skills-grid" id="skills-grid">
-          <div class="glass-card skill-card reveal" data-skill-cat="frontend">
-            <div class="skill-card__top">
-              <div class="skill-badge-group">
-                <div class="skill-icon">H5</div>
-                <div>
-                  <h3>HTML5</h3>
-                  <div class="skill-cat" data-i18n="catWeb">Antarmuka Web</div>
-                </div>
-              </div>
-              <span class="skill-pct">90%</span>
-            </div>
-            <div class="skill-bar"><div class="skill-bar__fill" data-level="90"></div></div>
-            <p class="skill-desc" data-i18n="sHtml">Markup semantik, aksesibilitas dasar, dan struktur dokumen web yang bersih.</p>
-          </div>
-
-          <div class="glass-card skill-card reveal" data-skill-cat="frontend">
-            <div class="skill-card__top">
-              <div class="skill-badge-group">
-                <div class="skill-icon">C3</div>
-                <div>
-                  <h3>CSS3</h3>
-                  <div class="skill-cat" data-i18n="catWeb">Antarmuka Web</div>
-                </div>
-              </div>
-              <span class="skill-pct">85%</span>
-            </div>
-            <div class="skill-bar"><div class="skill-bar__fill" data-level="85"></div></div>
-            <p class="skill-desc" data-i18n="sCss">Flexbox, CSS Grid, tata letak responsif, variabel tema, dan transisi halus.</p>
-          </div>
-
-          <div class="glass-card skill-card reveal" data-skill-cat="frontend">
-            <div class="skill-card__top">
-              <div class="skill-badge-group">
-                <div class="skill-icon">JS</div>
-                <div>
-                  <h3>JavaScript</h3>
-                  <div class="skill-cat" data-i18n="catWeb">Antarmuka Web</div>
-                </div>
-              </div>
-              <span class="skill-pct">80%</span>
-            </div>
-            <div class="skill-bar"><div class="skill-bar__fill" data-level="80"></div></div>
-            <p class="skill-desc" data-i18n="sJs">Manipulasi DOM, interaksi modal, filtering data, validasi form, dan penyimpanan lokal.</p>
-          </div>
-
-          <div class="glass-card skill-card reveal" data-skill-cat="programming">
-            <div class="skill-card__top">
-              <div class="skill-badge-group">
-                <div class="skill-icon">PY</div>
-                <div>
-                  <h3 data-i18n="sPyName">Dasar Python</h3>
-                  <div class="skill-cat" data-i18n="catProg">Pemrograman</div>
-                </div>
-              </div>
-              <span class="skill-pct">68%</span>
-            </div>
-            <div class="skill-bar"><div class="skill-bar__fill" data-level="68"></div></div>
-            <p class="skill-desc" data-i18n="sPy">Pemahaman logika pemrograman, struktur data dasar, dan otomasi skrip sederhana.</p>
-          </div>
-
-          <div class="glass-card skill-card reveal" data-skill-cat="tools">
-            <div class="skill-card__top">
-              <div class="skill-badge-group">
-                <div class="skill-icon">GT</div>
-                <div>
-                  <h3>Git &amp; GitHub</h3>
-                  <div class="skill-cat" data-i18n="catTools">Perangkat Kerja</div>
-                </div>
-              </div>
-              <span class="skill-pct">78%</span>
-            </div>
-            <div class="skill-bar"><div class="skill-bar__fill" data-level="78"></div></div>
-            <p class="skill-desc" data-i18n="sGit">Pengelolaan riwayat perubahan kode, repositori proyek, dan kolaborasi tim.</p>
-          </div>
-
-          <div class="glass-card skill-card reveal" data-skill-cat="tools">
-            <div class="skill-card__top">
-              <div class="skill-badge-group">
-                <div class="skill-icon">VS</div>
-                <div>
-                  <h3>VS Code</h3>
-                  <div class="skill-cat" data-i18n="catTools">Perangkat Kerja</div>
-                </div>
-              </div>
-              <span class="skill-pct">88%</span>
-            </div>
-            <div class="skill-bar"><div class="skill-bar__fill" data-level="88"></div></div>
-            <p class="skill-desc" data-i18n="sVscode">Lingkungan pengembangan utama untuk penulisan kode, debugging, dan pemformatan rapi.</p>
-          </div>
-        </div>
-
-        <!-- Capabilities -->
-        <div class="services-grid">
-          <div class="glass-card service-card reveal">
-            <div class="service-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="14" x="3" y="4" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="18" y2="21"/></svg>
-            </div>
-            <h3 data-i18n="srv1Title">Antarmuka Web Responsif</h3>
-            <p data-i18n="srv1Desc">Merancang halaman web dengan hierarki visual yang elegan, nyaman dibaca, dan adaptif di berbagai ukuran layar.</p>
-          </div>
-
-          <div class="glass-card service-card reveal">
-            <div class="service-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
-            </div>
-            <h3 data-i18n="srv2Title">Sistem Informasi &amp; Katalog</h3>
-            <p data-i18n="srv2Desc">Membangun antarmuka pencatatan data, pencarian katalog, serta pemantauan progres berbasis logika yang terstruktur.</p>
-          </div>
-
-          <div class="glass-card service-card reveal">
-            <div class="service-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            </div>
-            <h3 data-i18n="srv3Title">Kolaborasi Proyek RPL</h3>
-            <p data-i18n="srv3Desc">Berkontribusi dalam pengembangan modul web menggunakan alur Git/GitHub yang teratur dan mudah ditinjau.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================================================================
-         FAQ ACCORDION
-         ================================================================== -->
-    <section id="faq" class="section section--compact">
-      <div class="container">
-        <div class="section-header reveal">
-          <div>
-            <p class="eyebrow"><span class="eyebrow__num">04</span> <span data-i18n="faqEyebrow">/ Pertanyaan Umum</span></p>
-            <h2 class="section-title">
-              <span data-i18n="faqTitle">Tanya</span> <span class="serif-italic" data-i18n="faqTitleSerif">Jawab</span>
-            </h2>
-          </div>
-        </div>
-
-        <div class="faq-list">
-          <div class="faq-item reveal" data-open="true">
-            <button type="button" class="faq-trigger" aria-expanded="true">
-              <span data-i18n="q1">Teknologi apa yang paling sering Anda gunakan saat ini?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-panel">
-              <div class="faq-panel__inner">
-                <p class="faq-panel__content" data-i18n="a1">
-                  Saya berfokus pada fondasi web standar industri yaitu HTML5, CSS3, dan JavaScript murni untuk memastikan pemahaman logika yang kuat, dipadukan dengan dasar Python serta Git/GitHub untuk pengelolaan kode.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item reveal" data-open="false">
-            <button type="button" class="faq-trigger" aria-expanded="false">
-              <span data-i18n="q2">Apakah terbuka untuk kerja sama tugas, proyek web, atau magang (PKL)?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-panel">
-              <div class="faq-panel__inner">
-                <p class="faq-panel__content" data-i18n="a2">
-                  Ya, saya sangat terbuka untuk diskusi proyek, kolaborasi antarmuka web, maupun kesempatan Praktik Kerja Lapangan (PKL) di bidang pengembangan perangkat lunak.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item reveal" data-open="false">
-            <button type="button" class="faq-trigger" aria-expanded="false">
-              <span data-i18n="q3">Di mana saya dapat melihat kode sumber proyek Anda?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-panel">
-              <div class="faq-panel__inner">
-                <p class="faq-panel__content" data-i18n="a3">
-                  Anda dapat meninjau repositori publik saya melalui GitHub di @sonsaya47-aril, atau menghubungi saya langsung melalui email untuk menanyakan detail proyek tertentu.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item reveal" data-open="false">
-            <button type="button" class="faq-trigger" aria-expanded="false">
-              <span data-i18n="q4">Bagaimana cara tercepat menghubungi Anda?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-panel">
-              <div class="faq-panel__inner">
-                <p class="faq-panel__content" data-i18n="a4">
-                  Cara tercepat adalah melalui email langsung ke sonsaya47@gmail.com atau menggunakan formulir kontak interaktif di bagian bawah halaman ini.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================================================================
          CONTACT HUB
          ================================================================== -->
     <section id="kontak" class="section">
@@ -912,7 +693,6 @@
         <a href="#beranda" data-i18n="navHome">Beranda</a>
         <a href="#proyek" data-i18n="navProjects">Proyek</a>
         <a href="#tentang" data-i18n="navAbout">Profil</a>
-        <a href="#keahlian" data-i18n="navSkills">Keahlian</a>
         <a href="#kontak" data-i18n="navContact">Kontak</a>
       </div>
 
