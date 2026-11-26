@@ -1,700 +1,1053 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" data-theme="dark" data-accent="champagne">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ach Syafa Ariyilhaq — Portofolio Rekayasa Perangkat Lunak</title>
+  <meta name="description" content="Portofolio pribadi Ach Syafa Ariyilhaq, pelajar jurusan Rekayasa Perangkat Lunak (RPL) yang berfokus pada pengembangan web, sistem informasi, dan antarmuka modern.">
 
-  <title>Ach Syafa Ariyilhaq — Portofolio RPL</title>
-  <meta name="description" content="Portofolio pribadi Ach Syafa Ariyilhaq, pelajar jurusan RPL.">
+  <!-- Instant saved theme/accent restoration to prevent flash -->
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('asa_theme');
+        var savedAccent = localStorage.getItem('asa_accent');
+        var savedLang = localStorage.getItem('asa_lang');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        if (savedAccent === 'champagne' || savedAccent === 'emerald' || savedAccent === 'sapphire') {
+          document.documentElement.setAttribute('data-accent', savedAccent);
+        }
+        if (savedLang === 'id' || savedLang === 'en') {
+          document.documentElement.setAttribute('lang', savedLang);
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
-            sans: ['Inter', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            canvas: '#FAFAFA',
-            surface: '#FFFFFF',
-            ink: '#111111',
-            muted: '#52525B',
-            line: '#E4E4E7',
-            accent: '#14532D'
-          }
-        }
-      }
-    };
-  </script>
-
-  <style>
-    body {
-      background-color: #FAFAFA;
-      color: #111111;
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    .editorial-card {
-      background-color: #FFFFFF;
-      border: 1px solid #E4E4E7;
-      border-radius: 8px;
-      transition: border-color 0.15s ease;
-    }
-
-    .editorial-card:hover {
-      border-color: #14532D;
-    }
-
-    .filter-tab {
-      border-bottom: 2px solid transparent;
-      color: #52525B;
-      transition: color 0.15s ease;
-      padding-bottom: 8px;
-    }
-
-    .filter-tab:hover {
-      color: #111111;
-    }
-
-    .filter-tab.active {
-      color: #14532D;
-      border-bottom-color: #14532D;
-      font-weight: 600;
-    }
-
-    .project-item {
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .project-item.hidden-project {
-      display: none;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+<body>
+  <a href="#main-content" class="skip-link" data-i18n="skip">Lewati ke konten utama</a>
 
-<body class="bg-canvas text-ink">
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
-<!-- NAVIGASI -->
-<header class="sticky top-0 z-40 bg-canvas border-b border-line">
-  <div class="mx-auto max-w-5xl px-5 sm:px-8">
-    <div class="flex h-16 items-center justify-between">
+  <!-- Ambient Atmospheric Backdrop -->
+  <div class="ambient-canvas" aria-hidden="true">
+    <div class="ambient-grid"></div>
+    <div class="ambient-orb ambient-orb--one"></div>
+    <div class="ambient-orb ambient-orb--two"></div>
+  </div>
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
 
-      <a href="#beranda" class="font-heading text-lg font-bold">
-        Ach Syafa Ariyilhaq.
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="#beranda" class="brand" aria-label="Beranda Ach Syafa Ariyilhaq">
+        <span class="brand__monogram">A</span>
+        <span class="brand__text">
+          <span class="brand__name">Ach Syafa Ariyilhaq</span>
+          <span class="brand__role" data-i18n="brandRole">Rekayasa Perangkat Lunak</span>
+        </span>
       </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-sm">
-        <a href="#tentang">Tentang</a>
-        <a href="#proyek">Proyek</a>
-        <a href="#keahlian">Keahlian</a>
-        <a href="#kontak">Kontak</a>
+      <nav class="main-nav" aria-label="Navigasi utama">
+        <a href="#beranda" class="nav-link active" data-nav="beranda" data-i18n="navHome">Beranda</a>
+        <a href="#ringkasan" class="nav-link" data-nav="ringkasan" data-i18n="navWorkspace">Konsol</a>
+        <a href="#proyek" class="nav-link" data-nav="proyek" data-i18n="navProjects">Proyek</a>
+        <a href="#tentang" class="nav-link" data-nav="tentang" data-i18n="navAbout">Profil</a>
+        <a href="#keahlian" class="nav-link" data-nav="keahlian" data-i18n="navSkills">Keahlian</a>
+        <a href="#kontak" class="nav-link" data-nav="kontak" data-i18n="navContact">Kontak</a>
       </nav>
 
-      <button id="mobile-menu-toggle"
-        class="md:hidden p-3"
-        aria-label="Buka menu">
-        ☰
-      </button>
+      <div class="header-actions">
+        <button type="button" class="icon-btn" id="cmd-trigger" aria-label="Buka Command Palette" title="Command Palette (Ctrl+K)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="cmd-trigger-label" data-i18n="cmdLabel">Cari</span>
+          <span class="kbd-hint">Ctrl K</span>
+        </button>
 
+        <button type="button" class="icon-btn" id="lang-toggle" aria-label="Ganti Bahasa" title="Bahasa ID / EN">
+          <span id="lang-badge">ID</span>
+        </button>
+
+        <div class="appearance-wrapper">
+          <button type="button" class="icon-btn" id="appearance-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Pengaturan Tema dan Warna">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          </button>
+
+          <div class="appearance-popover" id="appearance-popover" role="dialog" aria-label="Tampilan dan Palet">
+            <p class="popover-label" data-i18n="themeTitle">Mode Tampilan</p>
+            <div class="theme-switch-row">
+              <button type="button" class="theme-choice" data-set-theme="dark">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                <span data-i18n="themeDark">Obsidian</span>
+              </button>
+              <button type="button" class="theme-choice" data-set-theme="light">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>
+                <span data-i18n="themeLight">Ivory</span>
+              </button>
+            </div>
+
+            <p class="popover-label" data-i18n="accentTitle">Palet Aksen</p>
+            <div class="accent-grid">
+              <button type="button" class="accent-swatch" data-set-accent="champagne">
+                <span class="swatch-dot" style="background: #cfb076;"></span>
+                <span>Gold</span>
+              </button>
+              <button type="button" class="accent-swatch" data-set-accent="emerald">
+                <span class="swatch-dot" style="background: #1d7a4c;"></span>
+                <span>Emerald</span>
+              </button>
+              <button type="button" class="accent-swatch" data-set-accent="sapphire">
+                <span class="swatch-dot" style="background: #3b74e0;"></span>
+                <span>Cobalt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="icon-btn mobile-toggle" id="mobile-toggle" aria-expanded="false" aria-label="Buka menu navigasi">
+          <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="7" y2="7"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="17" y2="17"/></svg>
+          <svg id="menu-icon-close" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-    <nav class="flex flex-col px-5 py-3">
-      <a href="#tentang" class="py-3">Tentang</a>
-      <a href="#proyek" class="py-3">Proyek</a>
-      <a href="#keahlian" class="py-3">Keahlian</a>
-      <a href="#kontak" class="py-3">Kontak</a>
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <nav aria-label="Navigasi seluler">
+      <a href="#beranda" data-nav="beranda" data-i18n="navHome">Beranda</a>
+      <a href="#ringkasan" data-nav="ringkasan" data-i18n="navWorkspace">Konsol</a>
+      <a href="#proyek" data-nav="proyek" data-i18n="navProjects">Proyek</a>
+      <a href="#tentang" data-nav="tentang" data-i18n="navAbout">Profil</a>
+      <a href="#keahlian" data-nav="keahlian" data-i18n="navSkills">Keahlian</a>
+      <a href="#faq" data-nav="faq" data-i18n="navFaq">Tanya Jawab</a>
+      <a href="#kontak" data-nav="kontak" data-i18n="navContact">Kontak</a>
     </nav>
+    <button type="button" class="btn btn--secondary btn--sm" id="mobile-cmd-btn" style="width:100%;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span data-i18n="openCmdBtn">Buka Command Palette</span>
+    </button>
   </div>
-</header>
 
-<main>
+  <main id="main-content">
+    <!-- ==================================================================
+         HERO SECTION
+         ================================================================== -->
+    <section id="beranda" class="section hero">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <div class="hero-status-bar">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span data-i18n="heroStatus">Terbuka untuk Kolaborasi &amp; PKL</span>
+            <span class="status-sep">•</span>
+            <span id="live-clock">--:-- WIB</span>
+          </div>
 
-<!-- BERANDA -->
-<section id="beranda" class="border-b border-line">
-  <div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 sm:py-24">
+          <h1 class="hero-title">
+            Ach Syafa Ariyilhaq
+            <span class="hero-title__serif" data-i18n="heroSubtitleSerif">
+              Merancang sistem web yang terstruktur, bersih, &amp; berkarakter.
+            </span>
+          </h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+          <div class="hero-type-row">
+            <span class="type-prefix">$ focus &gt;</span>
+            <span id="typewriter-text">Pengembangan Antarmuka Web</span><span class="type-cursor" aria-hidden="true"></span>
+          </div>
 
-      <div class="md:col-span-8 space-y-6">
+          <p class="hero-lead" data-i18n="heroLead">
+            Pelajar jurusan Rekayasa Perangkat Lunak (RPL) yang berfokus pada pengembangan aplikasi web modern, sistem pencatatan serta pengelolaan data, dan pengalaman antarmuka yang intuitif serta mudah digunakan.
+          </p>
 
-        <p class="font-mono text-xs uppercase text-accent">
-          REKAYASA PERANGKAT LUNAK (RPL)
-        </p>
+          <div class="hero-actions">
+            <a href="#proyek" class="btn btn--primary">
+              <span data-i18n="ctaExplore">Jelajahi Karya</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
 
-        <h1 class="text-4xl sm:text-6xl font-bold">
-          Ach Syafa Ariyilhaq
-        </h1>
+            <button type="button" class="btn btn--secondary" id="open-cv-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
+              <span data-i18n="ctaCv">Pratinjau CV</span>
+            </button>
 
-        <p class="text-base sm:text-lg leading-relaxed text-muted">
-          Siswa jurusan Rekayasa Perangkat Lunak yang berfokus pada pengembangan aplikasi web, sistem pengelolaan data, serta antarmuka perangkat lunak yang terstruktur dan mudah digunakan.
-        </p>
+            <a href="#kontak" class="btn btn--ghost" data-i18n="ctaContact">
+              Hubungi Saya
+            </a>
+          </div>
 
-        <div class="flex flex-wrap gap-3 pt-2">
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat__value"><span data-count-to="3">3</span><span>+</span></div>
+              <div class="hero-stat__label" data-i18n="statProjects">Proyek Terkurasi</div>
+            </div>
+            <div>
+              <div class="hero-stat__value"><span data-count-to="7">7</span><span>+</span></div>
+              <div class="hero-stat__label" data-i18n="statTech">Teknologi &amp; Alat</div>
+            </div>
+            <div>
+              <div class="hero-stat__value">RPL</div>
+              <div class="hero-stat__label" data-i18n="statMajor">Rekayasa Perangkat Lunak</div>
+            </div>
+          </div>
+        </div>
 
-          <a href="#proyek"
-            class="bg-accent text-white px-5 py-3 rounded">
-            Lihat Proyek
-          </a>
-
-          <a href="#kontak"
-            class="border border-line px-5 py-3 rounded">
-            Kontak
-          </a>
-
+        <div class="portrait-stage reveal">
+          <figure class="portrait-card">
+            <div class="portrait-media">
+              <img src="home.png.png" alt="Potret formal Ach Syafa Ariyilhaq dalam setelan jas hitam">
+              <div class="portrait-vignette"></div>
+              <div class="portrait-overlay-caption">
+                <div>
+                  <p class="portrait-caption__name">Ach Syafa Ariyilhaq</p>
+                  <p class="portrait-caption__sub">RPL · Web Developer</p>
+                </div>
+                <a href="https://github.com/sonsaya47-aril" target="_blank" rel="noopener noreferrer" class="portrait-badge-link">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.11.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.69-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.95.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18a10.9 10.9 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+                  <span>@sonsaya47-aril</span>
+                </a>
+              </div>
+            </div>
+            <figcaption class="portrait-footer-strip">
+              <span data-i18n="portraitEdition">EDISI PORTOFOLIO 2026</span>
+              <strong>ID · RPL / PPLG</strong>
+            </figcaption>
+          </figure>
         </div>
       </div>
+    </section>
 
-      <div class="md:col-span-4">
-        <figure class="rounded-lg border bg-white overflow-hidden">
+    <!-- ==================================================================
+         INTERACTIVE BENTO CONSOLE & GITHUB TELEMETRY
+         ================================================================== -->
+    <section id="ringkasan" class="section section--compact">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">00</span> <span data-i18n="consoleEyebrow">/ Ruang Kerja Interaktif</span></p>
+            <h2 class="section-title">
+              <span data-i18n="consoleTitle">Konsol Profil</span> <span class="serif-italic">&amp; Telemetri</span>
+            </h2>
+          </div>
+          <p class="section-subtitle" data-i18n="consoleDesc">
+            Jelajahi ringkasan teknis dalam format kode interaktif atau pantau aktivitas repositori publik GitHub secara langsung.
+          </p>
+        </div>
 
-          <img src="home.png.png"
-            alt="Foto profil Ach Syafa Ariyilhaq"
-            class="w-full aspect-square object-cover">
+        <div class="bento-grid">
+          <!-- Interactive Code Console -->
+          <div class="glass-card code-window reveal">
+            <div class="code-window__bar">
+              <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+                <div class="window-dots" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="code-tabs" role="tablist" aria-label="Berkas profil kode">
+                  <button type="button" class="code-tab active" data-code-tab="profil" role="tab" aria-selected="true">profil.json</button>
+                  <button type="button" class="code-tab" data-code-tab="stack" role="tab" aria-selected="false">stack.js</button>
+                  <button type="button" class="code-tab" data-code-tab="visi" role="tab" aria-selected="false">visi.py</button>
+                </div>
+              </div>
+              <div class="code-actions">
+                <button type="button" class="code-mini-btn" id="copy-code-btn">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                  <span data-i18n="copyCode">Salin</span>
+                </button>
+                <button type="button" class="code-mini-btn" id="run-code-btn">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  <span data-i18n="runCode">Jalankan</span>
+                </button>
+              </div>
+            </div>
 
-          <figcaption class="px-4 py-3 flex justify-between text-xs gap-2">
-            <span>Ach Syafa Ariyilhaq</span>
-            <span>Jurusan RPL</span>
-          </figcaption>
+            <div class="code-body">
+              <pre id="code-display"></pre>
+            </div>
+            <div class="code-output" id="code-output" aria-live="polite"></div>
+          </div>
 
-        </figure>
+          <!-- Right Column: GitHub Telemetry & Principles -->
+          <div class="bento-stack">
+            <div class="glass-card reveal">
+              <div class="github-card-head">
+                <div class="github-identity">
+                  <div class="github-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.11.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.69-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.95.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18a10.9 10.9 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+                  </div>
+                  <div>
+                    <h3 style="font-size:1rem;font-weight:700;">GitHub Live</h3>
+                    <p style="font-family:var(--font-mono);font-size:0.74rem;color:var(--text-muted);" id="gh-status-text">@sonsaya47-aril</p>
+                  </div>
+                </div>
+                <a href="https://github.com/sonsaya47-aril" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--sm" data-i18n="openGithub">
+                  Buka GitHub ↗
+                </a>
+              </div>
+
+              <div class="github-metrics">
+                <div class="gh-metric">
+                  <div class="gh-metric__val" id="gh-repos-count">—</div>
+                  <div class="gh-metric__lbl" data-i18n="ghRepos">Repositori</div>
+                </div>
+                <div class="gh-metric">
+                  <div class="gh-metric__val" id="gh-followers-count">—</div>
+                  <div class="gh-metric__lbl" data-i18n="ghFollowers">Pengikut</div>
+                </div>
+                <div class="gh-metric">
+                  <div class="gh-metric__val">RPL</div>
+                  <div class="gh-metric__lbl" data-i18n="ghTrack">Jalur</div>
+                </div>
+              </div>
+
+              <div class="gh-repos-list" id="gh-repos-list">
+                <div class="gh-repo-item">
+                  <span>Memuat repositori terbaru...</span>
+                  <span class="gh-repo-item__lang">GitHub API</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card reveal">
+              <h3 style="font-size:1rem;font-weight:700;margin-bottom:14px;" data-i18n="principlesTitle">Prinsip Pengerjaan Kode</h3>
+              <div class="principles-list">
+                <div class="principle-row">
+                  <span class="principle-num">01</span>
+                  <div>
+                    <h4 data-i18n="p1Title">Struktur Semantik &amp; Rapi</h4>
+                    <p data-i18n="p1Desc">Memisahkan tanggung jawab HTML, CSS, dan JavaScript agar mudah dipelihara.</p>
+                  </div>
+                </div>
+                <div class="principle-row">
+                  <span class="principle-num">02</span>
+                  <div>
+                    <h4 data-i18n="p2Title">Antarmuka Intuitif</h4>
+                    <p data-i18n="p2Desc">Navigasi jelas dan nyaman diakses di layar desktop maupun perangkat seluler.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- ==================================================================
+         PROJECTS SECTION
+         ================================================================== -->
+    <section id="proyek" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">01</span> <span data-i18n="projEyebrow">/ Arsip Karya Terpilih</span></p>
+            <h2 class="section-title">
+              <span data-i18n="projTitle">Proyek</span> <span class="serif-italic" data-i18n="projTitleSerif">&amp; Studi Kasus</span>
+            </h2>
+            <p class="section-subtitle" data-i18n="projSubtitle">
+              Klik kartu proyek mana saja untuk membaca studi kasus lengkap serta mencoba simulasi pratinjau interaktif di dalamnya.
+            </p>
+          </div>
+        </div>
 
-<!-- PROYEK -->
-<section id="proyek" class="border-b border-line">
-  <div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 sm:py-24 space-y-10">
+        <div class="projects-toolbar reveal">
+          <div class="filter-pills" role="group" aria-label="Filter kategori proyek">
+            <button type="button" class="filter-tab active" data-filter="Semua">
+              <span data-i18n="filterAll">Semua</span>
+              <span class="filter-count">3</span>
+            </button>
+            <button type="button" class="filter-tab" data-filter="Web">
+              <span>Web</span>
+              <span class="filter-count">3</span>
+            </button>
+            <button type="button" class="filter-tab" data-filter="Pertanian">
+              <span data-i18n="filterAgri">Pertanian</span>
+              <span class="filter-count">2</span>
+            </button>
+            <button type="button" class="filter-tab" data-filter="RPL">
+              <span>RPL</span>
+              <span class="filter-count">1</span>
+            </button>
+          </div>
 
-    <div class="flex flex-col sm:flex-row justify-between gap-6 border-b pb-6">
+          <div class="toolbar-right">
+            <label class="search-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input type="search" id="project-search" placeholder="Cari proyek atau teknologi..." data-i18n-placeholder="searchPlaceholder">
+            </label>
 
+            <div class="view-switch" role="group" aria-label="Mode tampilan proyek">
+              <button type="button" class="view-btn active" data-view="grid" aria-label="Tampilan grid" title="Grid View">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+              </button>
+              <button type="button" class="view-btn" data-view="list" aria-label="Tampilan daftar" title="List View">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-grid" id="project-grid">
+          <!-- Proyek 1 -->
+          <article tabindex="0" class="project-card reveal" data-project-id="tanaman-obat" data-categories="Web,Pertanian" data-search="sistem informasi tanaman obat herbal katalog html css javascript web pertanian">
+            <div class="project-media">
+              <img src="tanaman obat.jpeg" alt="Dokumentasi Sistem Informasi Tanaman Obat">
+              <div class="project-media__overlay">
+                <span class="project-year-badge">2025 · Web App</span>
+                <span class="project-open-pill" data-i18n="openCaseStudy">Studi Kasus &amp; Demo ↗</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span data-i18n="p1Cat">Web / Pertanian</span>
+                <span>01</span>
+              </div>
+              <h3 class="project-title" data-i18n="p1Name">Sistem Informasi Tanaman Obat</h3>
+              <p class="project-desc" data-i18n="p1Summary">
+                Katalog dan sistem informasi tanaman obat berbasis web untuk mendokumentasikan jenis, bagian yang digunakan, dan khasiatnya secara terstruktur.
+              </p>
+              <div class="project-footer">
+                <div class="tech-tags">
+                  <span class="tech-tag">HTML</span>
+                  <span class="tech-tag">CSS</span>
+                  <span class="tech-tag">JavaScript</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyek 2 -->
+          <article tabindex="0" class="project-card reveal" data-project-id="monitoring-kangkung" data-categories="Web,Pertanian" data-search="monitoring tanaman kangkung pertumbuhan panen pencatatan html javascript css web pertanian">
+            <div class="project-media">
+              <img src="kangkung.jpg" alt="Monitoring Pertumbuhan Tanaman Kangkung">
+              <div class="project-media__overlay">
+                <span class="project-year-badge">2025 · Data Tracker</span>
+                <span class="project-open-pill" data-i18n="openCaseStudy">Studi Kasus &amp; Demo ↗</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span data-i18n="p2Cat">Web / Pertanian</span>
+                <span>02</span>
+              </div>
+              <h3 class="project-title" data-i18n="p2Name">Monitoring Tanaman Kangkung</h3>
+              <p class="project-desc" data-i18n="p2Summary">
+                Aplikasi pencatatan dan pemantauan pertumbuhan tanaman kangkung untuk mendata perkembangan harian, penyiraman, hingga estimasi masa panen.
+              </p>
+              <div class="project-footer">
+                <div class="tech-tags">
+                  <span class="tech-tag">HTML</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">CSS</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyek 3 -->
+          <article tabindex="0" class="project-card reveal" data-project-id="portofolio-rpl" data-categories="RPL,Web" data-search="portofolio proyek rpl pplg html5 css3 javascript antarmuka arsip pemrograman">
+            <div class="project-media project-media--top">
+              <img src="portofolio pplg.jpeg" alt="Kode Antarmuka Portofolio Proyek RPL">
+              <div class="project-media__overlay">
+                <span class="project-year-badge">2026 · RPL Archive</span>
+                <span class="project-open-pill" data-i18n="openCaseStudy">Studi Kasus &amp; Demo ↗</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span data-i18n="p3Cat">RPL / Web</span>
+                <span>03</span>
+              </div>
+              <h3 class="project-title" data-i18n="p3Name">Portofolio Proyek RPL</h3>
+              <p class="project-desc" data-i18n="p3Summary">
+                Kumpulan tugas dan pengembangan antarmuka web jurusan Rekayasa Perangkat Lunak sebagai arsip praktik pemrograman terstruktur.
+              </p>
+              <div class="project-footer">
+                <div class="tech-tags">
+                  <span class="tech-tag">HTML5</span>
+                  <span class="tech-tag">CSS3</span>
+                  <span class="tech-tag">JavaScript</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="project-empty" id="project-empty">
+          <p style="margin-bottom:14px;" data-i18n="emptyProjects">Tidak ada proyek yang cocok dengan kata kunci atau filter tersebut.</p>
+          <button type="button" class="btn btn--secondary btn--sm" id="reset-projects-btn" data-i18n="resetFilter">Tampilkan Semua Proyek</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         ABOUT & JOURNEY TIMELINE
+         ================================================================== -->
+    <section id="tentang" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">02</span> <span data-i18n="aboutEyebrow">/ Profil &amp; Perjalanan</span></p>
+            <h2 class="section-title">
+              <span data-i18n="aboutTitle">Mengenal</span> <span class="serif-italic">Ach Syafa Ariyilhaq</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="about-layout">
+          <div class="glass-card profile-card reveal">
+            <h3 style="font-size:1.25rem;font-weight:700;" data-i18n="profileHeading">Profil Singkat</h3>
+            <div class="profile-prose">
+              <p data-i18n="profileP1">
+                Saya <strong>Ach Syafa Ariyilhaq</strong>, pelajar jurusan <strong>Rekayasa Perangkat Lunak (RPL)</strong> yang berfokus pada pengembangan web terstruktur dan pembuatan antarmuka yang fungsional.
+              </p>
+              <p data-i18n="profileP2">
+                Dalam setiap proyek, saya mengutamakan keterbacaan kode, alur navigasi yang jelas, serta penyajian dan pengolahan data yang mudah dipahami oleh pengguna akhir.
+              </p>
+            </div>
+
+            <div class="specs-grid">
+              <div class="spec-item">
+                <div class="spec-item__label" data-i18n="specMajorLbl">Jurusan</div>
+                <div class="spec-item__value" data-i18n="specMajorVal">Rekayasa Perangkat Lunak</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-item__label" data-i18n="specFocusLbl">Fokus Utama</div>
+                <div class="spec-item__value" data-i18n="specFocusVal">Pengembangan Web</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-item__label" data-i18n="specStackLbl">Bahasa Inti</div>
+                <div class="spec-item__value">HTML5, CSS3, JS, Python</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-item__label" data-i18n="specStatusLbl">Ketersediaan</div>
+                <div class="spec-item__value" style="color:var(--success);" data-i18n="specStatusVal">Siap Kolaborasi / PKL</div>
+              </div>
+            </div>
+
+            <div>
+              <button type="button" class="btn btn--secondary btn--sm" id="open-cv-btn-2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <span data-i18n="openCvFull">Lihat Ringkasan CV Lengkap</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="timeline reveal">
+            <div class="timeline-item">
+              <div class="timeline-item__phase" data-i18n="t1Phase">TAHAP 01 · FONDASI</div>
+              <h3 data-i18n="t1Title">Fondasi Web &amp; Logika Pemrograman</h3>
+              <p data-i18n="t1Desc">Mempelajari struktur HTML5 semantik, tata letak responsif CSS3, serta logika algoritma pemrograman dasar.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item__phase" data-i18n="t2Phase">TAHAP 02 · INTERAKTIVITAS</div>
+              <h3 data-i18n="t2Title">JavaScript DOM &amp; Pengolahan Data</h3>
+              <p data-i18n="t2Desc">Mengembangkan fitur dinamis di peramban seperti filter katalog, validasi formulir, dan dasar pemrograman Python.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item__phase" data-i18n="t3Phase">TAHAP 03 · PROYEK TERAPAN</div>
+              <h3 data-i18n="t3Title">Sistem Informasi &amp; Monitoring Pertanian</h3>
+              <p data-i18n="t3Desc">Membangun aplikasi katalog tanaman obat dan sistem pemantauan pertumbuhan kangkung berbasis web.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item__phase" data-i18n="t4Phase">TAHAP 04 · BERKELANJUTAN</div>
+              <h3 data-i18n="t4Title">Alur Kerja Git &amp; Arsitektur Modern</h3>
+              <p data-i18n="t4Desc">Membiasakan kontrol versi Git/GitHub, kerapian dokumentasi, dan eksplorasi antarmuka web modern berstandar industri.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SKILLS & CAPABILITIES
+         ================================================================== -->
+    <section id="keahlian" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">03</span> <span data-i18n="skillsEyebrow">/ Kompetensi Teknis</span></p>
+            <h2 class="section-title">
+              <span data-i18n="skillsTitle">Keahlian</span> <span class="serif-italic" data-i18n="skillsTitleSerif">&amp; Kemampuan</span>
+            </h2>
+          </div>
+
+          <div class="skills-tabs" role="group" aria-label="Filter keahlian">
+            <button type="button" class="filter-tab active" data-skill-filter="all" data-i18n="skillAll">Semua</button>
+            <button type="button" class="filter-tab" data-skill-filter="frontend" data-i18n="skillWeb">Antarmuka Web</button>
+            <button type="button" class="filter-tab" data-skill-filter="programming" data-i18n="skillProg">Pemrograman</button>
+            <button type="button" class="filter-tab" data-skill-filter="tools" data-i18n="skillTools">Perangkat Kerja</button>
+          </div>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+          <div class="glass-card skill-card reveal" data-skill-cat="frontend">
+            <div class="skill-card__top">
+              <div class="skill-badge-group">
+                <div class="skill-icon">H5</div>
+                <div>
+                  <h3>HTML5</h3>
+                  <div class="skill-cat" data-i18n="catWeb">Antarmuka Web</div>
+                </div>
+              </div>
+              <span class="skill-pct">90%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" data-level="90"></div></div>
+            <p class="skill-desc" data-i18n="sHtml">Markup semantik, aksesibilitas dasar, dan struktur dokumen web yang bersih.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal" data-skill-cat="frontend">
+            <div class="skill-card__top">
+              <div class="skill-badge-group">
+                <div class="skill-icon">C3</div>
+                <div>
+                  <h3>CSS3</h3>
+                  <div class="skill-cat" data-i18n="catWeb">Antarmuka Web</div>
+                </div>
+              </div>
+              <span class="skill-pct">85%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" data-level="85"></div></div>
+            <p class="skill-desc" data-i18n="sCss">Flexbox, CSS Grid, tata letak responsif, variabel tema, dan transisi halus.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal" data-skill-cat="frontend">
+            <div class="skill-card__top">
+              <div class="skill-badge-group">
+                <div class="skill-icon">JS</div>
+                <div>
+                  <h3>JavaScript</h3>
+                  <div class="skill-cat" data-i18n="catWeb">Antarmuka Web</div>
+                </div>
+              </div>
+              <span class="skill-pct">80%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" data-level="80"></div></div>
+            <p class="skill-desc" data-i18n="sJs">Manipulasi DOM, interaksi modal, filtering data, validasi form, dan penyimpanan lokal.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal" data-skill-cat="programming">
+            <div class="skill-card__top">
+              <div class="skill-badge-group">
+                <div class="skill-icon">PY</div>
+                <div>
+                  <h3 data-i18n="sPyName">Dasar Python</h3>
+                  <div class="skill-cat" data-i18n="catProg">Pemrograman</div>
+                </div>
+              </div>
+              <span class="skill-pct">68%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" data-level="68"></div></div>
+            <p class="skill-desc" data-i18n="sPy">Pemahaman logika pemrograman, struktur data dasar, dan otomasi skrip sederhana.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal" data-skill-cat="tools">
+            <div class="skill-card__top">
+              <div class="skill-badge-group">
+                <div class="skill-icon">GT</div>
+                <div>
+                  <h3>Git &amp; GitHub</h3>
+                  <div class="skill-cat" data-i18n="catTools">Perangkat Kerja</div>
+                </div>
+              </div>
+              <span class="skill-pct">78%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" data-level="78"></div></div>
+            <p class="skill-desc" data-i18n="sGit">Pengelolaan riwayat perubahan kode, repositori proyek, dan kolaborasi tim.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal" data-skill-cat="tools">
+            <div class="skill-card__top">
+              <div class="skill-badge-group">
+                <div class="skill-icon">VS</div>
+                <div>
+                  <h3>VS Code</h3>
+                  <div class="skill-cat" data-i18n="catTools">Perangkat Kerja</div>
+                </div>
+              </div>
+              <span class="skill-pct">88%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" data-level="88"></div></div>
+            <p class="skill-desc" data-i18n="sVscode">Lingkungan pengembangan utama untuk penulisan kode, debugging, dan pemformatan rapi.</p>
+          </div>
+        </div>
+
+        <!-- Capabilities -->
+        <div class="services-grid">
+          <div class="glass-card service-card reveal">
+            <div class="service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="14" x="3" y="4" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="18" y2="21"/></svg>
+            </div>
+            <h3 data-i18n="srv1Title">Antarmuka Web Responsif</h3>
+            <p data-i18n="srv1Desc">Merancang halaman web dengan hierarki visual yang elegan, nyaman dibaca, dan adaptif di berbagai ukuran layar.</p>
+          </div>
+
+          <div class="glass-card service-card reveal">
+            <div class="service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+            </div>
+            <h3 data-i18n="srv2Title">Sistem Informasi &amp; Katalog</h3>
+            <p data-i18n="srv2Desc">Membangun antarmuka pencatatan data, pencarian katalog, serta pemantauan progres berbasis logika yang terstruktur.</p>
+          </div>
+
+          <div class="glass-card service-card reveal">
+            <div class="service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3 data-i18n="srv3Title">Kolaborasi Proyek RPL</h3>
+            <p data-i18n="srv3Desc">Berkontribusi dalam pengembangan modul web menggunakan alur Git/GitHub yang teratur dan mudah ditinjau.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         FAQ ACCORDION
+         ================================================================== -->
+    <section id="faq" class="section section--compact">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">04</span> <span data-i18n="faqEyebrow">/ Pertanyaan Umum</span></p>
+            <h2 class="section-title">
+              <span data-i18n="faqTitle">Tanya</span> <span class="serif-italic" data-i18n="faqTitleSerif">Jawab</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item reveal" data-open="true">
+            <button type="button" class="faq-trigger" aria-expanded="true">
+              <span data-i18n="q1">Teknologi apa yang paling sering Anda gunakan saat ini?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel__inner">
+                <p class="faq-panel__content" data-i18n="a1">
+                  Saya berfokus pada fondasi web standar industri yaitu HTML5, CSS3, dan JavaScript murni untuk memastikan pemahaman logika yang kuat, dipadukan dengan dasar Python serta Git/GitHub untuk pengelolaan kode.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" data-open="false">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span data-i18n="q2">Apakah terbuka untuk kerja sama tugas, proyek web, atau magang (PKL)?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel__inner">
+                <p class="faq-panel__content" data-i18n="a2">
+                  Ya, saya sangat terbuka untuk diskusi proyek, kolaborasi antarmuka web, maupun kesempatan Praktik Kerja Lapangan (PKL) di bidang pengembangan perangkat lunak.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" data-open="false">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span data-i18n="q3">Di mana saya dapat melihat kode sumber proyek Anda?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel__inner">
+                <p class="faq-panel__content" data-i18n="a3">
+                  Anda dapat meninjau repositori publik saya melalui GitHub di @sonsaya47-aril, atau menghubungi saya langsung melalui email untuk menanyakan detail proyek tertentu.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" data-open="false">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span data-i18n="q4">Bagaimana cara tercepat menghubungi Anda?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel__inner">
+                <p class="faq-panel__content" data-i18n="a4">
+                  Cara tercepat adalah melalui email langsung ke sonsaya47@gmail.com atau menggunakan formulir kontak interaktif di bagian bawah halaman ini.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         CONTACT HUB
+         ================================================================== -->
+    <section id="kontak" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">05</span> <span data-i18n="contactEyebrow">/ Kontak &amp; Kolaborasi</span></p>
+            <h2 class="section-title">
+              <span data-i18n="contactTitle">Mari</span> <span class="serif-italic" data-i18n="contactTitleSerif">Terhubung</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="contact-layout">
+          <div class="contact-info-stack reveal">
+            <div class="glass-card email-box">
+              <h3 style="font-size:1.1rem;font-weight:700;" data-i18n="directChannel">Saluran Komunikasi Langsung</h3>
+              <p style="font-size:0.88rem;color:var(--text-muted);" data-i18n="contactLead">
+                Silakan kirim pesan untuk diskusi proyek web, kolaborasi tugas Rekayasa Perangkat Lunak, maupun peluang magang.
+              </p>
+
+              <div class="email-display">
+                <span id="email-address">sonsaya47@gmail.com</span>
+                <button type="button" class="btn btn--secondary btn--sm" id="copy-email-btn">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                  <span data-i18n="copyEmail">Salin Email</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="social-links-grid">
+              <a href="https://github.com/sonsaya47-aril" target="_blank" rel="noopener noreferrer" class="social-row">
+                <div class="social-row__left">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.11.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.69-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.95.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18a10.9 10.9 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+                  <div>
+                    <div style="font-weight:600;font-size:0.9rem;">GitHub</div>
+                    <div class="social-row__meta">github.com/sonsaya47-aril</div>
+                  </div>
+                </div>
+                <span style="color:var(--accent);">↗</span>
+              </a>
+
+              <a href="mailto:sonsaya47@gmail.com" class="social-row">
+                <div class="social-row__left">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  <div>
+                    <div style="font-weight:600;font-size:0.9rem;">Email</div>
+                    <div class="social-row__meta">sonsaya47@gmail.com</div>
+                  </div>
+                </div>
+                <span style="color:var(--accent);">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <form id="contact-form" class="glass-card contact-form reveal" novalidate>
+            <div>
+              <p class="popover-label" style="margin-bottom:8px;" data-i18n="topicPresetLabel">Pilih Topik Cepat</p>
+              <div class="inquiry-presets">
+                <button type="button" class="preset-chip" data-preset="Kolaborasi Proyek Web" data-i18n="presetCollab">Kolaborasi Proyek</button>
+                <button type="button" class="preset-chip" data-preset="Diskusi Materi &amp; Tugas RPL" data-i18n="presetRpl">Diskusi RPL</button>
+                <button type="button" class="preset-chip" data-preset="Kesempatan Magang / PKL" data-i18n="presetIntern">Magang / PKL</button>
+                <button type="button" class="preset-chip" data-preset="Pertanyaan Umum" data-i18n="presetGeneral">Umum</button>
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="field">
+                <div class="field-top">
+                  <label for="nama" data-i18n="lblName">Nama Lengkap</label>
+                </div>
+                <input type="text" id="nama" name="nama" required placeholder="Masukkan nama Anda" data-i18n-placeholder="phName">
+                <span class="field-error" id="err-nama"></span>
+              </div>
+
+              <div class="field">
+                <div class="field-top">
+                  <label for="email" data-i18n="lblEmail">Alamat Email</label>
+                </div>
+                <input type="email" id="email" name="email" required placeholder="nama@email.com">
+                <span class="field-error" id="err-email"></span>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="field-top">
+                <label for="subjek" data-i18n="lblSubject">Subjek</label>
+              </div>
+              <input type="text" id="subjek" name="subjek" required placeholder="Contoh: Diskusi pembuatan web" data-i18n-placeholder="phSubject">
+              <span class="field-error" id="err-subjek"></span>
+            </div>
+
+            <div class="field">
+              <div class="field-top">
+                <label for="pesan" data-i18n="lblMessage">Pesan</label>
+                <span class="char-counter" id="char-count">0 / 1000</span>
+              </div>
+              <textarea id="pesan" name="pesan" maxlength="1000" required placeholder="Tuliskan detail pesan atau kebutuhan Anda..." data-i18n-placeholder="phMessage"></textarea>
+              <span class="field-error" id="err-pesan"></span>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                <span data-i18n="sendBtn">Kirim via Email</span>
+              </button>
+
+              <button type="button" class="btn btn--secondary" id="copy-msg-btn">
+                <span data-i18n="copyMsgBtn">Salin Format Pesan</span>
+              </button>
+
+              <span class="draft-indicator" id="draft-status"></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
       <div>
-        <p class="font-mono text-xs text-accent">
-          01 / Arsip Karya
-        </p>
-
-        <h2 class="text-3xl font-bold">
-          Proyek Terpilih
-        </h2>
+        <p style="font-weight:700;">Ach Syafa Ariyilhaq</p>
+        <p class="footer-meta" data-i18n="footerTagline">© 2026 · Dibangun dengan HTML5, CSS3, dan JavaScript.</p>
       </div>
 
-      <div class="flex flex-wrap gap-6">
-
-        <button data-filter="Semua" class="filter-tab active">
-          Semua
-        </button>
-
-        <button data-filter="Web" class="filter-tab">
-          Web
-        </button>
-
-        <button data-filter="Pertanian" class="filter-tab">
-          Pertanian
-        </button>
-
-        <button data-filter="RPL" class="filter-tab">
-          RPL
-        </button>
-
+      <div class="footer-links">
+        <a href="#beranda" data-i18n="navHome">Beranda</a>
+        <a href="#proyek" data-i18n="navProjects">Proyek</a>
+        <a href="#tentang" data-i18n="navAbout">Profil</a>
+        <a href="#keahlian" data-i18n="navSkills">Keahlian</a>
+        <a href="#kontak" data-i18n="navContact">Kontak</a>
       </div>
 
+      <p class="footer-meta" style="font-family:var(--font-mono);font-size:0.74rem;" data-i18n="footerShortcut">
+        Pintasan: Tekan Ctrl + K
+      </p>
     </div>
+  </footer>
 
-    <div id="project-grid"
-      class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <!-- Floating Back-to-Top Progress Ring -->
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Kembali ke atas">
+    <svg class="progress-ring" viewBox="0 0 50 50" aria-hidden="true">
+      <circle class="progress-ring__circle" cx="25" cy="25" r="22"></circle>
+    </svg>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
 
-      <!-- PROYEK 1 -->
-      <article
-        tabindex="0"
-        data-categories="Web,Pertanian"
-        class="project-item editorial-card overflow-hidden cursor-pointer">
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
-        <img src="tanaman obat.jpeg"
-          alt="Tanaman Obat"
-          class="w-full aspect-[16/10] object-cover">
+  <!-- ====================================================================
+       MODAL 1: PROJECT CASE STUDY & LIVE MINI-DEMO
+       ==================================================================== -->
+  <div class="modal-backdrop" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent);" id="pm-category">Web / Pertanian</span>
+          <h3 id="pm-title" style="font-size:1.2rem;font-weight:700;">Judul Proyek</h3>
+        </div>
+        <button type="button" class="modal-close" id="pm-close" aria-label="Tutup modal">✕</button>
+      </div>
 
-        <div class="p-5 space-y-3">
+      <div class="modal-body">
+        <img src="" alt="" class="modal-hero-img" id="pm-image">
 
-          <p class="font-mono text-xs text-accent">
-            Web / Pertanian
-          </p>
-
-          <h3 class="text-lg font-semibold">
-            Sistem Informasi Tanaman Obat
-          </h3>
-
-          <p class="text-sm text-muted">
-            Katalog dan sistem informasi tanaman obat berbasis web untuk mendokumentasikan jenis, bagian yang digunakan, dan khasiatnya.
-          </p>
-
+        <div class="modal-tabs" id="pm-tabs">
+          <button type="button" class="modal-tab-btn active" data-pm-tab="case" data-i18n="tabCase">Studi Kasus</button>
+          <button type="button" class="modal-tab-btn" data-pm-tab="demo" data-i18n="tabDemo">Simulasi Interaktif</button>
         </div>
 
-        <div class="px-5 pb-5 flex gap-2 text-xs flex-wrap">
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>JavaScript</span>
-        </div>
+        <div id="pm-content"></div>
+      </div>
 
-      </article>
-
-      <!-- PROYEK 2 -->
-      <article
-        tabindex="0"
-        data-categories="Web,Pertanian"
-        class="project-item editorial-card overflow-hidden cursor-pointer">
-
-        <img src="kangkung.jpg"
-          alt="Monitoring Kangkung"
-          class="w-full aspect-[16/10] object-cover">
-
-        <div class="p-5 space-y-3">
-
-          <p class="font-mono text-xs text-accent">
-            Web / Pertanian
-          </p>
-
-          <h3 class="text-lg font-semibold">
-            Monitoring Tanaman Kangkung
-          </h3>
-
-          <p class="text-sm text-muted">
-            Aplikasi pencatatan dan pemantauan pertumbuhan tanaman kangkung untuk mendata perkembangan harian hingga masa panen.
-          </p>
-
-        </div>
-
-        <div class="px-5 pb-5 flex gap-2 text-xs flex-wrap">
-          <span>HTML</span>
-          <span>JavaScript</span>
-          <span>CSS</span>
-        </div>
-
-      </article>
-
-      <!-- PROYEK 3 -->
-      <article
-        tabindex="0"
-        data-categories="RPL,Web"
-        class="project-item editorial-card overflow-hidden cursor-pointer">
-
-        <img src="portofolio pplg.jpeg"
-          alt="Portofolio RPL"
-          class="w-full aspect-[16/10] object-cover">
-
-        <div class="p-5 space-y-3">
-
-          <p class="font-mono text-xs text-accent">
-            RPL / Web
-          </p>
-
-          <h3 class="text-lg font-semibold">
-            Portofolio Proyek RPL
-          </h3>
-
-          <p class="text-sm text-muted">
-            Kumpulan tugas dan pengembangan antarmuka web jurusan Rekayasa Perangkat Lunak sebagai arsip praktik pemrograman.
-          </p>
-
-        </div>
-
-        <div class="px-5 pb-5 flex gap-2 text-xs flex-wrap">
-          <span>HTML5</span>
-          <span>CSS3</span>
-          <span>JavaScript</span>
-        </div>
-
-      </article>
-
+      <div class="modal-nav-footer">
+        <button type="button" class="btn btn--secondary btn--sm" id="pm-prev">← <span data-i18n="prevProj">Proyek Sebelumnya</span></button>
+        <span style="font-family:var(--font-mono);font-size:0.74rem;color:var(--text-muted);" id="pm-year">2025</span>
+        <button type="button" class="btn btn--secondary btn--sm" id="pm-next"><span data-i18n="nextProj">Proyek Berikutnya</span> →</button>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- TENTANG DAN KEAHLIAN -->
-<section id="tentang" class="border-b border-line">
-  <div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 sm:py-24">
+  <!-- ====================================================================
+       MODAL 2: COMMAND PALETTE (CTRL + K)
+       ==================================================================== -->
+  <div class="modal-backdrop" id="command-palette" role="dialog" aria-modal="true" aria-label="Command Palette">
+    <div class="modal-dialog modal-dialog--narrow">
+      <div class="cmd-input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="cmd-input" placeholder="Ketik perintah, bagian halaman, atau proyek..." autocomplete="off">
+        <button type="button" class="modal-close" id="cmd-close" aria-label="Tutup command palette">✕</button>
+      </div>
+      <div class="cmd-list" id="cmd-list" role="listbox"></div>
+    </div>
+  </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 border rounded-lg bg-white">
-
-      <!-- TENTANG -->
-      <div class="p-6 sm:p-10 space-y-5">
-
-        <p class="font-mono text-xs text-accent">
-          02 / Tentang
-        </p>
-
-        <h2 class="text-2xl font-bold">
-          Profil Singkat
-        </h2>
-
-        <div class="space-y-4 text-sm leading-relaxed text-muted">
-
-          <p>
-            Saya <strong>Ach Syafa Ariyilhaq</strong>, pelajar jurusan
-            <strong>Rekayasa Perangkat Lunak (RPL)</strong>
-            yang berfokus pada pengembangan web terstruktur dan pembuatan antarmuka yang fungsional.
-          </p>
-
-          <p>
-            Dalam setiap proyek, saya mengutamakan kode yang rapi, alur navigasi yang jelas, serta pengolahan data yang mudah dipahami.
-          </p>
-
+  <!-- ====================================================================
+       MODAL 3: INTERACTIVE PRINTABLE CV / RESUME
+       ==================================================================== -->
+  <div class="modal-backdrop" id="cv-modal" role="dialog" aria-modal="true" aria-labelledby="cv-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="cv-modal-title" style="font-size:1.1rem;font-weight:700;" data-i18n="cvHeaderTitle">Ringkasan Curriculum Vitae</h3>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button type="button" class="btn btn--primary btn--sm" id="cv-print-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+            <span data-i18n="cvPrint">Cetak / Simpan PDF</span>
+          </button>
+          <button type="button" class="modal-close" id="cv-close" aria-label="Tutup CV">✕</button>
         </div>
+      </div>
 
-        <div class="pt-4 border-t grid grid-cols-2 gap-4 text-xs">
+      <div class="modal-body">
+        <div class="cv-sheet">
+          <div class="cv-header">
+            <div>
+              <h2 style="font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;">Ach Syafa Ariyilhaq</h2>
+              <p style="color:var(--accent);font-weight:600;font-size:0.95rem;" data-i18n="cvRole">Pelajar Rekayasa Perangkat Lunak (RPL) · Web Developer</p>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:0.76rem;color:var(--text-muted);line-height:1.7;">
+              <div>Email: sonsaya47@gmail.com</div>
+              <div>GitHub: github.com/sonsaya47-aril</div>
+              <div>Indonesia</div>
+            </div>
+          </div>
 
-          <div>
-            <p class="text-muted">Jurusan</p>
-            <p class="font-medium mt-1">
-              Rekayasa Perangkat Lunak
+          <div class="cv-section">
+            <h4 data-i18n="cvSumTitle">Ringkasan Profil</h4>
+            <p style="font-size:0.88rem;color:var(--text-muted);" data-i18n="cvSumBody">
+              Pelajar jurusan Rekayasa Perangkat Lunak (RPL) yang berfokus pada pengembangan aplikasi web, sistem pengelolaan data, serta antarmuka perangkat lunak yang terstruktur, rapi, dan mudah digunakan.
             </p>
           </div>
 
-          <div>
-            <p class="text-muted">Fokus Utama</p>
-            <p class="font-medium mt-1">
-              Pengembangan Web
-            </p>
+          <div class="cv-section">
+            <h4 data-i18n="cvEduTitle">Pendidikan &amp; Jurusan</h4>
+            <p style="font-weight:600;font-size:0.92rem;" data-i18n="cvEduName">Rekayasa Perangkat Lunak (RPL / PPLG)</p>
+            <p style="font-size:0.84rem;color:var(--text-muted);" data-i18n="cvEduDesc">Fokus pada pemrograman web, desain antarmuka, dan dasar sistem informasi.</p>
           </div>
 
-        </div>
+          <div class="cv-section">
+            <h4 data-i18n="cvProjTitle">Proyek Pilihan</h4>
+            <ul style="padding-left:18px;font-size:0.86rem;color:var(--text-muted);display:grid;gap:6px;">
+              <li><strong>Sistem Informasi Tanaman Obat</strong> — Katalog web untuk mendokumentasikan jenis, bagian tanaman, dan khasiat (HTML, CSS, JavaScript).</li>
+              <li><strong>Monitoring Tanaman Kangkung</strong> — Aplikasi pencatatan dan pemantauan pertumbuhan harian hingga masa panen (HTML, CSS, JavaScript).</li>
+              <li><strong>Portofolio Proyek RPL</strong> — Arsip terstruktur praktik pengembangan antarmuka web jurusan RPL (HTML5, CSS3, JavaScript).</li>
+            </ul>
+          </div>
 
-      </div>
-
-      <!-- KEAHLIAN -->
-      <div id="keahlian" class="p-6 sm:p-10 space-y-6">
-
-        <p class="font-mono text-xs text-accent">
-          03 / Keahlian
-        </p>
-
-        <h2 class="text-2xl font-bold">
-          Kompetensi Teknis
-        </h2>
-
-        <div class="divide-y border-t border-b">
-
-          <div class="py-4 space-y-3">
-
-            <h3 class="font-semibold text-sm">
-              Antarmuka Web
-            </h3>
-
-            <div class="flex flex-wrap gap-2 text-xs">
-              <span class="border px-3 py-1 rounded">HTML5</span>
-              <span class="border px-3 py-1 rounded">CSS3</span>
-              <span class="border px-3 py-1 rounded">JavaScript</span>
+          <div class="cv-section" style="margin-bottom:0;">
+            <h4 data-i18n="cvSkillsTitle">Kompetensi Teknis</h4>
+            <div class="tech-tags">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Dasar Python</span>
+              <span class="tech-tag">Git</span>
+              <span class="tech-tag">GitHub</span>
+              <span class="tech-tag">VS Code</span>
             </div>
-
           </div>
-
-          <div class="py-4 space-y-3">
-
-            <h3 class="font-semibold text-sm">
-              Pemrograman
-            </h3>
-
-            <div class="flex flex-wrap gap-2 text-xs">
-              <span class="border px-3 py-1 rounded">Dasar Python</span>
-            </div>
-
-          </div>
-
-          <div class="py-4 space-y-3">
-
-            <h3 class="font-semibold text-sm">
-              Perangkat Kerja
-            </h3>
-
-            <div class="flex flex-wrap gap-2 text-xs">
-              <span class="border px-3 py-1 rounded">Git</span>
-              <span class="border px-3 py-1 rounded">GitHub</span>
-              <span class="border px-3 py-1 rounded">VS Code</span>
-            </div>
-
-          </div>
-
         </div>
       </div>
-
     </div>
   </div>
-</section>
 
-<!-- KONTAK -->
-<section id="kontak">
-  <div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 sm:py-24">
-
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
-
-      <div class="md:col-span-5 space-y-6">
-
-        <div class="space-y-3">
-
-          <p class="font-mono text-xs text-accent">
-            04 / Kontak
-          </p>
-
-          <h2 class="text-3xl font-bold">
-            Hubungi Saya
-          </h2>
-
-          <p class="text-sm text-muted leading-relaxed">
-            Silakan kirim pesan untuk diskusi proyek, kolaborasi tugas Rekayasa Perangkat Lunak, atau pertanyaan seputar karya yang ditampilkan.
-          </p>
-
-        </div>
-
-        <div class="border rounded-lg bg-white p-5 space-y-3">
-
-          <p class="text-xs text-muted">
-            Alamat Email Langsung
-          </p>
-
-          <p id="email-address" class="font-mono text-sm">
-            sonsaya47@gmail.com
-          </p>
-
-          <button id="copy-email-btn"
-            class="border px-4 py-2 rounded text-xs hover:bg-gray-100">
-            Salin Alamat Email
-          </button>
-
-          <p id="copy-status" class="text-xs text-accent"></p>
-
-        </div>
-
-        <div class="border-t pt-4 flex justify-between text-sm">
-
-          <span>GitHub</span>
-
-          <a href="https://github.com/sonsaya47-aril"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline text-xs">
-            github.com/sonsaya47-aril
-          </a>
-
-        </div>
-
-      </div>
-
-      <!-- FORM KONTAK -->
-      <div class="md:col-span-7">
-
-        <form id="contact-form"
-          class="border rounded-lg bg-white p-6 sm:p-8 space-y-5">
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-            <div>
-              <label for="nama" class="block text-xs mb-2">
-                Nama Lengkap
-              </label>
-
-              <input
-                type="text"
-                id="nama"
-                name="nama"
-                required
-                placeholder="Masukkan nama"
-                class="w-full border rounded px-4 py-3 text-sm outline-none focus:border-green-800">
-            </div>
-
-            <div>
-              <label for="email" class="block text-xs mb-2">
-                Email
-              </label>
-
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="nama@email.com"
-                class="w-full border rounded px-4 py-3 text-sm outline-none focus:border-green-800">
-            </div>
-
-          </div>
-
-          <div>
-            <label for="subjek" class="block text-xs mb-2">
-              Subjek
-            </label>
-
-            <input
-              type="text"
-              id="subjek"
-              name="subjek"
-              required
-              placeholder="Subjek pesan"
-              class="w-full border rounded px-4 py-3 text-sm outline-none focus:border-green-800">
-          </div>
-
-          <div>
-            <label for="pesan" class="block text-xs mb-2">
-              Pesan
-            </label>
-
-            <textarea
-              id="pesan"
-              name="pesan"
-              rows="5"
-              required
-              placeholder="Tuliskan pesan Anda..."
-              class="w-full border rounded px-4 py-3 text-sm outline-none focus:border-green-800"></textarea>
-          </div>
-
-          <button
-            type="submit"
-            class="bg-accent text-white px-6 py-3 rounded text-sm hover:bg-green-900">
-            Kirim Pesan
-          </button>
-
-        </form>
-
-      </div>
-
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- FOOTER -->
-<footer class="border-t border-line">
-  <div class="mx-auto max-w-5xl px-5 sm:px-8 py-8">
-
-    <div class="flex flex-col sm:flex-row justify-between gap-4 text-xs text-muted">
-
-      <p>
-        © 2026 Ach Syafa Ariyilhaq.
-      </p>
-
-      <p>
-        Dibuat dengan HTML, CSS, dan JavaScript.
-      </p>
-
-    </div>
-
-  </div>
-</footer>
-
-<!-- JAVASCRIPT -->
-<script>
-
-// MENU MOBILE
-const menuToggle = document.getElementById('mobile-menu-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
-
-menuToggle.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-});
-
-// TUTUP MENU SETELAH KLIK
-document.querySelectorAll('#mobile-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.add('hidden');
-  });
-});
-
-// FILTER PROYEK
-const filterButtons = document.querySelectorAll('[data-filter]');
-const projectItems = document.querySelectorAll('.project-item');
-
-filterButtons.forEach(button => {
-
-  button.addEventListener('click', () => {
-
-    const selectedFilter = button.dataset.filter;
-
-    filterButtons.forEach(btn => {
-      btn.classList.remove('active');
-    });
-
-    button.classList.add('active');
-
-    projectItems.forEach(project => {
-
-      const categories = project.dataset.categories.split(',');
-
-      if (
-        selectedFilter === 'Semua' ||
-        categories.includes(selectedFilter)
-      ) {
-        project.classList.remove('hidden-project');
-      } else {
-        project.classList.add('hidden-project');
-      }
-
-    });
-
-  });
-
-});
-
-// SALIN EMAIL
-const copyButton = document.getElementById('copy-email-btn');
-const emailAddress = document.getElementById('email-address');
-const copyStatus = document.getElementById('copy-status');
-
-copyButton.addEventListener('click', async () => {
-
-  try {
-    await navigator.clipboard.writeText(emailAddress.textContent.trim());
-
-    copyStatus.textContent = 'Alamat email berhasil disalin!';
-  } catch (error) {
-    copyStatus.textContent = 'Gagal menyalin. Silakan salin secara manual.';
-  }
-
-});
-
-// FORM KONTAK
-const contactForm = document.getElementById('contact-form');
-
-contactForm.addEventListener('submit', function(event) {
-
-  event.preventDefault();
-
-  const nama = document.getElementById('nama').value;
-  const email = document.getElementById('email').value;
-  const subjek = document.getElementById('subjek').value;
-  const pesan = document.getElementById('pesan').value;
-
-  const tujuanEmail = emailAddress.textContent.trim();
-
-  const isiPesan =
-    `Nama: ${nama}\n` +
-    `Email: ${email}\n\n` +
-    `Pesan:\n${pesan}`;
-
-  const mailtoLink =
-    `mailto:${tujuanEmail}` +
-    `?subject=${encodeURIComponent(subjek)}` +
-    `&body=${encodeURIComponent(isiPesan)}`;
-
-  window.location.href = mailtoLink;
-
-});
-
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
